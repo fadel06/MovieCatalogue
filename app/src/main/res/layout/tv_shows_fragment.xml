@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.tvshow.TvShowFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTvShow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="@string/recycle_grid"
+        app:spanCount="3"
+        tools:itemCount="3"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        tools:listitem="@layout/item_list" />
+
+    <include
+        android:id="@+id/mLoading"
+        layout="@layout/item_loading"/>
+
+</FrameLayout>

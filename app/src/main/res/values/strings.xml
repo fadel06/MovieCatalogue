@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Movie Catalogue</string>
+    <string name="movie">Movie</string>
+    <string name="tv_show">TV Show</string>
+    <string name="rating">Rating</string>
+    <string name="poster">Poster</string>
+    <string name="recycle_grid" translatable="false">androidx.recyclerview.widget.GridLayoutManager</string>
+    <string name="sampleTitle">This is sample title</string>
+    <string name="bg_poster">Background Poster</string>
+    <string name="watch_thriller">Watch Thriller</string>
+    <string name="overview">Overview</string>
+    <string name="sampleDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta suscipit nunc, et sagittis ligula sollicitudin eget. Cras sed luctus mi. Aliquam sagittis rutrum tellus a molestie. Cras quis nulla tempus, feugiat tortor vitae, porttitor tellus. Nulla congue ullamcorper purus, eget iaculis nisi dictum sed. In pretium dolor nec aliquet varius. Pellentesque justo lectus, accumsan non congue at, vehicula vitae lectus. Proin elit orci, malesuada ornare tortor a, efficitur fringilla ligula. Curabitur vitae arcu ex. Etiam vitae nisi massa.  </string>
+    <string name="crew">Crew</string>
+    <string name="splash_logo">Splash Logo</string>
+    <string name="slogan">FOR YOUR MOVIE AND TV SHOW REFERENCE</string>
+</resources>
