@@ -8,9 +8,10 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.belajar.moviecatalogue.R
-import com.belajar.moviecatalogue.data.MovieEntity
-import com.belajar.moviecatalogue.data.TvShowEntity
+import com.belajar.moviecatalogue.data.ItemEntity
 import com.belajar.moviecatalogue.databinding.ActivityDetailBinding
+import com.belajar.moviecatalogue.ui.adapter.CrewAdapter
+import com.belajar.moviecatalogue.viewmodel.ViewModelFactory
 import com.bumptech.glide.Glide
 
 class DetailActivity : AppCompatActivity() {
@@ -35,8 +36,8 @@ class DetailActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener {
             finish()
         }
-
-        detailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        detailViewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         val movieId = intent.getIntExtra(EXTRA_MOVIE, 0)
         val tvShowId = intent.getIntExtra(EXTRA_TV_SHOW, 0)
@@ -52,18 +53,18 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadDataMovie(movie: MovieEntity?) {
+    private fun loadDataMovie(movie: ItemEntity?) {
         binding.apply {
-            supportActionBar?.title = movie?.movieTitle
-            Glide.with(this@DetailActivity).load(movie?.moviePoster).into(imgPoster)
-            Glide.with(this@DetailActivity).load(movie?.moviePoster).into(imgBgPoster)
-            tvTitle.text = movie?.movieTitle
-            tvReleaseDate.text = movie?.movieRelease
-            tvRating.text = movie?.movieRating
-            progressRating.progress = movie?.movieRating?.toInt() ?: 0
-            tvOverview.text = movie?.movieDescription
+            supportActionBar?.title = movie?.title
+            Glide.with(this@DetailActivity).load(getIdResources(movie?.poster)).into(imgPoster)
+            Glide.with(this@DetailActivity).load(getIdResources(movie?.poster)).into(imgBgPoster)
+            tvTitle.text = movie?.title
+            tvReleaseDate.text = movie?.release
+            tvRating.text = movie?.rating
+            progressRating.progress = movie?.rating?.toInt() ?: 0
+            tvOverview.text = movie?.description
             btnTrailer.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(movie?.movieTrailer))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(movie?.trailer))
                 startActivity(intent)
             }
         }
@@ -72,22 +73,26 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    private fun loadDataTvShow(tvShow: TvShowEntity?) {
+    private fun loadDataTvShow(tvShow: ItemEntity?) {
         binding.apply {
-            supportActionBar?.title = tvShow?.tvShowTitle
-            Glide.with(this@DetailActivity).load(tvShow?.tvShowPoster).into(imgPoster)
-            Glide.with(this@DetailActivity).load(tvShow?.tvShowPoster).into(imgBgPoster)
-            tvTitle.text = tvShow?.tvShowTitle
-            tvReleaseDate.text = tvShow?.tvShowRelease
-            tvRating.text = tvShow?.tvShowRating
-            progressRating.progress = tvShow?.tvShowRating?.toInt() ?: 0
-            tvOverview.text = tvShow?.tvShowDescription
+            supportActionBar?.title = tvShow?.title
+            Glide.with(this@DetailActivity).load(getIdResources(tvShow?.poster)).into(imgPoster)
+            Glide.with(this@DetailActivity).load(getIdResources(tvShow?.poster)).into(imgBgPoster)
+            tvTitle.text = tvShow?.title
+            tvReleaseDate.text = tvShow?.release
+            tvRating.text = tvShow?.rating
+            progressRating.progress = tvShow?.rating?.toInt() ?: 0
+            tvOverview.text = tvShow?.description
             btnTrailer.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(tvShow?.tvShowTrailer))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(tvShow?.trailer))
                 startActivity(intent)
             }
         }
         val crews = detailViewModel.getTvShowCrews(tvShow)
         mAdapter.setCrews(crews)
+    }
+
+    private fun getIdResources(name : String?) : Int? {
+        return resources.getIdentifier(name, "drawable", packageName)
     }
 }

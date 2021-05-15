@@ -1,4 +1,4 @@
-package com.belajar.moviecatalogue.ui.detail
+package com.belajar.moviecatalogue.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -33,11 +33,12 @@ class CrewAdapter : RecyclerView.Adapter<CrewAdapter.ViewHolder>() {
     inner class ViewHolder (private val binding: ItemCrewBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(crew: CrewEntity){
             with(binding){
+                val idResource = itemView.context.resources.getIdentifier(crew.crewPhoto, "drawable", itemView.context.packageName)
                 tvName.text = crew.crewName
                 tvPosition.text = crew.crewPosition
 
                 Glide.with(itemView.context)
-                    .load(crew.crewPhoto)
+                    .load(idResource)
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                     .error(R.drawable.ic_error)
                     .into(imgCrew)

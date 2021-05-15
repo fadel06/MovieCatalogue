@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.tvshow.TvShowFragment">
+    tools:context=".ui.MovieAndTvShowFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTvShow"
+        android:id="@+id/mRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="@string/recycle_grid"
-        app:spanCount="3"
         tools:itemCount="3"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
@@ -20,5 +18,4 @@
     <include
         android:id="@+id/mLoading"
         layout="@layout/item_loading"/>
-
 </FrameLayout>

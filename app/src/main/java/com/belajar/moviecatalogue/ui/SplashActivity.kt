@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        window.insetsController?.hide(WindowInsets.Type.statusBars())
+//        window.insetsController?.hide(WindowInsets.Type.statusBars())
 
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, HomeActivity::class.java)

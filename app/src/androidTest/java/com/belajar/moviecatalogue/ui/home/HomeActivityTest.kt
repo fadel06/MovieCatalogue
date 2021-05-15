@@ -32,38 +32,38 @@ class HomeActivityTest {
 
     @Test
     fun loadMovies(){
-        onView(withId(R.id.rvMovie)).check(matches(isDisplayed()))
-        onView(withId(R.id.rvMovie)).perform(
+        onView(withId(R.id.mRecyclerView)).check(matches(isDisplayed()))
+        onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size - 1)
         )
     }
 
     @Test
     fun loadDetailMovie(){
-        onView(withId(R.id.rvMovie)).perform(
+        onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
                 ViewActions.click()
             )
         )
-        onView(withId(R.id.rvMovie)).perform(
+        onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
                 ViewActions.click()
             )
         )
         onView(withId(R.id.tvTitle)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvTitle)).check(matches(withText(dummyMovie[0].movieTitle)))
+        onView(withId(R.id.tvTitle)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.tvReleaseDate)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvReleaseDate)).check(matches(withText(dummyMovie[0].movieRelease)))
+        onView(withId(R.id.tvReleaseDate)).check(matches(withText(dummyMovie[0].release)))
         onView(withId(R.id.tvRating)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvRating)).check(matches(withText(dummyMovie[0].movieRating)))
+        onView(withId(R.id.tvRating)).check(matches(withText(dummyMovie[0].rating)))
         onView(withId(R.id.tvOverview)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvOverview)).check(matches(withText(dummyMovie[0].movieDescription)))
+        onView(withId(R.id.tvOverview)).check(matches(withText(dummyMovie[0].description)))
         onView(withId(R.id.mScrollView)).perform(ViewActions.swipeUp())
         onView(withId(R.id.rvCrew)).check(matches(isDisplayed()))
         onView(withId(R.id.rvCrew)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie[0].crews.size - 1)
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>((dummyMovie[0].crews?.size ?: 0) - 1)
         )
         pressBack()
     }
@@ -71,8 +71,8 @@ class HomeActivityTest {
     @Test
     fun loadTvShows(){
         onView(withId(R.id.navigationTvShow)).perform(ViewActions.click())
-        onView(withId(R.id.rvTvShow)).check(matches(isDisplayed()))
-        onView(withId(R.id.rvTvShow)).perform(
+        onView(withId(R.id.mRecyclerView)).check(matches(isDisplayed()))
+        onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvShow.size - 1)
         )
     }
@@ -80,30 +80,30 @@ class HomeActivityTest {
     @Test
     fun loadDetailTvShow(){
         onView(withId(R.id.navigationTvShow)).perform(ViewActions.click())
-        onView(withId(R.id.rvTvShow)).perform(
+        onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
                 ViewActions.click()
             )
         )
-        onView(withId(R.id.rvTvShow)).perform(
+        onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
                 ViewActions.click()
             )
         )
         onView(withId(R.id.tvTitle)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvTitle)).check(matches(withText(dummyTvShow[0].tvShowTitle)))
+        onView(withId(R.id.tvTitle)).check(matches(withText(dummyTvShow[0].title)))
         onView(withId(R.id.tvReleaseDate)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvReleaseDate)).check(matches(withText(dummyTvShow[0].tvShowRelease)))
+        onView(withId(R.id.tvReleaseDate)).check(matches(withText(dummyTvShow[0].release)))
         onView(withId(R.id.tvRating)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvRating)).check(matches(withText(dummyTvShow[0].tvShowRating)))
+        onView(withId(R.id.tvRating)).check(matches(withText(dummyTvShow[0].rating)))
         onView(withId(R.id.tvOverview)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvOverview)).check(matches(withText(dummyTvShow[0].tvShowDescription)))
+        onView(withId(R.id.tvOverview)).check(matches(withText(dummyTvShow[0].description)))
         onView(withId(R.id.mScrollView)).perform(ViewActions.swipeUp())
         onView(withId(R.id.rvCrew)).check(matches(isDisplayed()))
         onView(withId(R.id.rvCrew)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvShow[0].crews.size - 1)
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>((dummyTvShow[0].crews?.size ?: 0) - 1)
         )
         pressBack()
     }

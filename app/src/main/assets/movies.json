@@ -1,0 +1,445 @@
+{
+  "result": [
+    {
+      "id" : 1,
+      "title": "A Star Is Born",
+      "description": "Seasoned musician Jackson Maine discovers — and falls in love with — struggling artist Ally. She has just about given up on her dream to make it big as a singer — until Jack coaxes her into the spotlight. But even as Ally's career takes off, the personal side of their relationship is breaking down, as Jack fights an ongoing battle with his own internal demons.",
+      "poster" : "movie_a_start_is_born",
+      "release": "October 3, 2018",
+      "rating" : "75",
+      "trailer" : "https://youtu.be/nSbzyEJ8X9E",
+      "crews": [
+        {
+          "crewName" : "Bradley Cooper",
+          "crewPosition" : "Director, Screenplay",
+          "crewPhoto" : "a_start_is_born_bradley_cooper"
+        },
+        {
+          "crewName" : "Will Fetters",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "ic_person"
+        },
+        {
+          "crewName" : "Eric Roth",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "a_start_is_born_eric_roth"
+        },
+        {
+          "crewName" : "Robert Carson",
+          "crewPosition" : "Story",
+          "crewPhoto" : "ic_person"
+        },
+        {
+          "crewName" : "William A. Wellman",
+          "crewPosition" : "Story",
+          "crewPhoto" : "a_start_is_born_will_a_wellman"
+        }
+      ]
+    },
+    {
+      "id" : 2,
+      "title": "Alita: Battle Angel",
+      "description": "When Alita awakens with no memory of who she is in a future world she does not recognize, she is taken in by Ido, a compassionate doctor who realizes that somewhere in this abandoned cyborg shell is the heart and soul of a young woman with an extraordinary past.",
+      "poster" : "movie_alita",
+      "release": "January 31, 2019",
+      "rating" : "72",
+      "trailer" : "https://youtu.be/U3D2vmWD88w",
+      "crews": [
+        {
+          "crewName" : "Robert Rodriguez",
+          "crewPosition" : "Director,",
+          "crewPhoto" : "battle_angel_robert_rodriguez"
+        },
+        {
+          "crewName" : "Laeta Kalogridis",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "battle_angel_laeta_kalogridis"
+        },
+        {
+          "crewName" : "James Cameron",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "battle_angel_james_cameron"
+        }
+      ]
+    },
+    {
+      "id" : 3,
+      "title": "Aquaman",
+      "description": "Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm's half-human, half-Atlantean brother and true heir to the throne.",
+      "poster" : "movie_aquaman",
+      "release": "December 7, 2018",
+      "rating" : "69",
+      "trailer" : "https://youtu.be/WDkg3h8PCVU",
+      "crews": [
+        {
+          "crewName" : "James Wan",
+          "crewPosition" : "Director,Story",
+          "crewPhoto" : "aquaman_james_wan"
+        },
+        {
+          "crewName" : "Will Beall",
+          "crewPosition" : "Screenplay,Story",
+          "crewPhoto" : "ic_person"
+        },
+        {
+          "crewName" : "Paul Norris",
+          "crewPosition" : "Characters",
+          "crewPhoto" : "ic_person"
+        },
+        {
+          "crewName" : "Mort Weisinger",
+          "crewPosition" : "Characters",
+          "crewPhoto" : "aquaman_mort_weisinger"
+        },
+        {
+          "crewName" : "David Leslie Johnson-McGoldrick",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "aquaman_david_leslie"
+        },
+        {
+          "crewName" : "Geoff Johns",
+          "crewPosition" : "Story",
+          "crewPhoto" : "aquaman_geoff_johns"
+        }
+      ]
+    },
+    {
+      "id" : 4,
+      "title": "Bohemian Rhapsody",
+      "description": "Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant classics. When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.",
+      "poster" : "movie_bohemian",
+      "release": "October 24, 2018",
+      "rating" : "80",
+      "trailer" : "https://youtu.be/27zlBpzdOZg",
+      "crews": [
+        {
+          "crewName" : "Anthony McCarten",
+          "crewPosition" : "Screenplay, Story",
+          "crewPhoto" : "bohemian_rhapsody_anthony"
+        },
+        {
+          "crewName" : "Bryan Singer",
+          "crewPosition" : "Director",
+          "crewPhoto" : "bohemian_rhapsody_bryan"
+        },
+        {
+          "crewName" : "Dexter Fletcher",
+          "crewPosition" : "Director",
+          "crewPhoto" : "bohemian_rhapsody_dexter"
+        },
+        {
+          "crewName" : "Peter Morgan",
+          "crewPosition" : "Story",
+          "crewPhoto" : "ic_person"
+        }
+      ]
+    },
+    {
+      "id" : 5,
+      "title": "Cold Pursuit",
+      "description": "he quiet family life of Nels Coxman, a snowplow driver, is upended after his son's murder. Nels begins a vengeful hunt for Viking, the drug lord he holds responsible for the killing, eliminating Viking's associates one by one. As Nels draws closer to Viking, his actions bring even more unexpected and violent consequences, as he proves that revenge is all in the execution.",
+      "poster" : "movie_cold_persuit",
+      "release": "February 7, 2019",
+      "rating" : "57",
+      "trailer" : "https://youtu.be/0phuNQQ_gHI",
+      "crews": [
+        {
+          "crewName" : "Hans Petter Moland",
+          "crewPosition" : "Director",
+          "crewPhoto" : "cold_pursuit_hans_petter"
+        },
+        {
+          "crewName" : "Frank Baldwin",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "ic_person"
+        }
+      ]
+    },
+    {
+      "id" : 6,
+      "title": "Creed",
+      "description": "The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.",
+      "poster" : "movie_creed",
+      "release": "November 25, 2015",
+      "rating" : "74",
+      "trailer" : "https://youtu.be/JQ9OhBYjTds",
+      "crews": [
+        {
+          "crewName" : "Ryan Coogler",
+          "crewPosition" : "Director, Screenplay, Story",
+          "crewPhoto" : "creed_ryan"
+        },
+        {
+          "crewName" : "Sylvester Stallone",
+          "crewPosition" : "Characters",
+          "crewPhoto" : "creed_sylvester"
+        },
+        {
+          "crewName" : "Aaron Covington",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "ic_person"
+        }
+      ]
+    },
+    {
+      "id" : 7,
+      "title": "Fantastic Beasts: The Crimes of Grindelwald",
+      "description": "Gellert Grindelwald has escaped imprisonment and has begun gathering followers to his cause—elevating wizards above all non-magical beings. The only one capable of putting a stop to him is the wizard he once called his closest friend, Albus Dumbledore. However, Dumbledore will need to seek help from the wizard who had thwarted Grindelwald once before, his former student Newt Scamander, who agrees to help, unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.",
+      "poster" : "movie_crimes",
+      "release": "November 14, 2018",
+      "rating" : "69",
+      "trailer" : "https://youtu.be/vvFybpmyB9E",
+      "crews": [
+        {
+          "crewName" : "David Yates",
+          "crewPosition" : "Director",
+          "crewPhoto" : "fantastic_beasts_david"
+        },
+        {
+          "crewName" : "J.K. Rowling",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "fantastic_beasts_j_k_rowling"
+        }
+      ]
+    },
+    {
+      "id" : 8,
+      "title": "Glass",
+      "description": "In a series of escalating encounters, former security guard David Dunn uses his supernatural abilities to track Kevin Wendell Crumb, a disturbed man who has twenty-four personalities. Meanwhile, the shadowy presence of Elijah Price emerges as an orchestrator who holds secrets critical to both men.",
+      "poster" : "movie_glass",
+      "release": "January 16, 2019",
+      "rating" : "67",
+      "trailer" : "https://youtu.be/Q7ztHi9ejp4",
+      "crews": [
+        {
+          "crewName" : "M. Night Shyamalan",
+          "crewPosition" : "Director, Screenplay",
+          "crewPhoto" : "glass_shyamalan"
+        }
+      ]
+    },
+    {
+      "id" : 9,
+      "title": "How to Train Your Dragon: The Hidden World",
+      "description": "As Hiccup fulfills his dream of creating a peaceful dragon utopia, Toothless’ discovery of an untamed, elusive mate draws the Night Fury away. When danger mounts at home and Hiccup’s reign as village chief is tested, both dragon and rider must make impossible decisions to save their kind.",
+      "poster" : "movie_how_to_train",
+      "release": "January 3, 2019",
+      "rating" : "78",
+      "trailer" : "https://youtu.be/qNGLuCijKZ0",
+      "crews": [
+        {
+          "crewName" : "Dean DeBlois",
+          "crewPosition" : "Director, Screenplay, Story",
+          "crewPhoto" : "htyd_dean"
+        },
+        {
+          "crewName" : "Cressida Cowell",
+          "crewPosition" : "Novel",
+          "crewPhoto" : "htyd_cressida"
+        }
+      ]
+    },
+    {
+      "id" : 10,
+      "title": "Avengers: Infinity War",
+      "description": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+      "poster" : "movie_infinity_war",
+      "release": "April 25, 2018",
+      "rating" : "83",
+      "trailer" : "https://youtu.be/6ZfuNTqbHE8",
+      "crews": [
+        {
+          "crewName" : "Joe Russo",
+          "crewPosition" : "Director",
+          "crewPhoto" : "avengers_joe"
+        },
+        {
+          "crewName" : "Anthony Russo",
+          "crewPosition" : "Director",
+          "crewPhoto" : "avengers_anthony"
+        },
+        {
+          "crewName" : "Stephen McFeely",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "avengers_stephen"
+        },
+        {
+          "crewName" : "Christopher Markus",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "avengers_christopher"
+        }
+      ]
+    },
+    {
+      "id" : 11,
+      "title": "Mary Queen of Scots",
+      "description": "In 1561, Mary Stuart, widow of the King of France, returns to Scotland, reclaims her rightful throne and menaces the future of Queen Elizabeth I as ruler of England, because she has a legitimate claim to the English throne. Betrayals, rebellions, conspiracies and their own life choices imperil both Queens. They experience the bitter cost of power, until their tragic fate is finally fulfilled.",
+      "poster" : "movie_marry_queen",
+      "release": "December 7, 2018",
+      "rating" : "66",
+      "trailer" : "https://youtu.be/wnqjSgMU36U",
+      "crews": [
+        {
+          "crewName" : "Josie Rourke",
+          "crewPosition" : "Director",
+          "crewPhoto" : "mqos_josie"
+        },
+        {
+          "crewName" : "Beau Willimon",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "ic_person"
+        }
+      ]
+    },
+    {
+      "id" : 12,
+      "title": "Master Z: Ip Man Legacy",
+      "description": "After being defeated by Ip Man, Cheung Tin Chi is attempting to keep a low profile. While going about his business, he gets into a fight with a foreigner by the name of Davidson, who is a big boss behind the bar district. Tin Chi fights hard with Wing Chun and earns respect.",
+      "poster" : "movie_master_z",
+      "release": "December 20, 2018",
+      "rating" : "60",
+      "trailer" : "https://youtu.be/KZau4zsOtyM",
+      "crews": [
+        {
+          "crewName" : "Yuen Woo-ping",
+          "crewPosition" : "Director",
+          "crewPhoto" : "ip_man_yuen"
+        },
+        {
+          "crewName" : "Chan Tai-Li",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "ic_person"
+        },
+        {
+          "crewName" : "Edmond Wong",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "ic_person"
+        }
+      ]
+    },
+    {
+      "id" : 13,
+      "title": "Mortal Engines",
+      "description": "Many thousands of years in the future, Earth’s cities roam the globe on huge wheels, devouring each other in a struggle for ever diminishing resources. On one of these massive traction cities, the old London, Tom Natsworthy has an unexpected encounter with a mysterious young woman from the wastelands who will change the course of his life forever.",
+      "poster" : "movie_mortal_engines",
+      "release": "November 27, 2018",
+      "rating" : "60",
+      "trailer" : "https://youtu.be/IRsFc2gguEg",
+      "crews": [
+        {
+          "crewName" : "Christian Rivers",
+          "crewPosition" : "Director",
+          "crewPhoto" : "mortal_christian"
+        },
+        {
+          "crewName" : "Philip Reeve",
+          "crewPosition" : "Novel",
+          "crewPhoto" : "ic_person"
+        },
+        {
+          "crewName" : "Philippa Boyens",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "ic_person"
+        },
+        {
+          "crewName" : "Fran Walsh",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "mortal_fran_walsh"
+        },
+        {
+          "crewName" : "Peter Jackson",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "mortal_peter"
+        }
+      ]
+    },
+    {
+      "id" : 14,
+      "title": "Overlord",
+      "description": "France, June 1944. On the eve of D-Day, some American paratroopers fall behind enemy lines after their aircraft crashes while on a mission to destroy a radio tower in a small village near the beaches of Normandy. After reaching their target, the surviving paratroopers realise that, in addition to fighting the Nazi troops that patrol the village, they also must fight against something else.",
+      "poster" : "movie_overlord",
+      "release": "November 1, 2018",
+      "rating" : "67",
+      "trailer" : "https://youtu.be/USPd0vX2sdc",
+      "crews": [
+        {
+          "crewName" : "Billy Ray",
+          "crewPosition" : "Screenplay, Story",
+          "crewPhoto" : "overlord_bill"
+        },
+        {
+          "crewName" : "Julius Avery",
+          "crewPosition" : "Director",
+          "crewPhoto" : "overlord_julius"
+        },
+        {
+          "crewName" : "Mark L. Smith",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "overlord_mark"
+        }
+      ]
+    },
+    {
+      "id" : 15,
+      "title": "Ralph Breaks the Internet",
+      "description": "Video game bad guy Ralph and fellow misfit Vanellope von Schweetz must risk it all by traveling to the World Wide Web in search of a replacement part to save Vanellope's video game, \"Sugar Rush.\" In way over their heads, Ralph and Vanellope rely on the citizens of the internet -- the netizens -- to help navigate their way, including an entrepreneur named Yesss, who is the head algorithm and the heart and soul of trend-making site BuzzzTube.\n",
+      "poster" : "movie_ralph",
+      "release": "November 20, 2018",
+      "rating" : "72",
+      "trailer" : "https://youtu.be/T73h5bmD8Dc",
+      "crews": [
+        {
+          "crewName" : "Phil Johnston",
+          "crewPosition" : "Director, Story, Writer",
+          "crewPhoto" : "ralph_phil"
+        },
+        {
+          "crewName" : "Rich Moore",
+          "crewPosition" : "Director, Story",
+            "crewPhoto" : "ralph_rich"
+        },
+        {
+          "crewName" : "Pamela Ribon",
+          "crewPosition" : "Story, Writer",
+          "crewPhoto" : "ralph_pamela"
+        },
+        {
+          "crewName" : "Josie Trinidad",
+          "crewPosition" : "Story",
+          "crewPhoto" : "ralph_josie"
+        },
+        {
+          "crewName" : "Jim Reardon",
+          "crewPosition" : "Story",
+          "crewPhoto" : "ralph_jim"
+        }
+      ]
+    },
+    {
+      "id" : 16,
+      "title": "Robin Hood",
+      "description": "A war-hardened Crusader and his Moorish commander mount an audacious revolt against the corrupt English crown.",
+      "poster" : "movie_robin_hood",
+      "release": "November 20, 2018",
+      "rating" : "59",
+      "trailer" : "https://youtu.be/ne7eStct3Fc",
+      "crews": [
+        {
+          "crewName" : "Ben Chandler",
+          "crewPosition" : "Screenplay, Story",
+          "crewPhoto" : "ic_person"
+        },
+        {
+          "crewName" : "Otto Bathurst",
+          "crewPosition" : "Director",
+          "crewPhoto" : "robin_hood_otto"
+        },
+        {
+          "crewName" : "David James Kelly",
+          "crewPosition" : "Screenplay",
+          "crewPhoto" : "ic_person"
+        }
+      ]
+    }
+  ]
+}

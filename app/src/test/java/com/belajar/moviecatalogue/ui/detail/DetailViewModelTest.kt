@@ -1,10 +1,17 @@
 package com.belajar.moviecatalogue.ui.detail
 
+import com.belajar.moviecatalogue.data.source.MovieCatalogueRepository
 import com.belajar.moviecatalogue.utils.Data
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
+import org.mockito.junit.MockitoJUnitRunner
 
+@RunWith(MockitoJUnitRunner::class)
 class DetailViewModelTest{
     private val id = 1
     private lateinit var viewModel: DetailViewModel
@@ -13,27 +20,34 @@ class DetailViewModelTest{
     private val dummyMovieCrew = dummyMovie?.crews?.get(id)
     private val dummyTvShowCrew = dummyTvShow?.crews?.get(id)
 
+    @Mock
+    private lateinit var movieCatalogueRepository: MovieCatalogueRepository
+
     @Before
     fun setUp(){
-        viewModel = DetailViewModel()
+        viewModel = DetailViewModel(movieCatalogueRepository)
     }
 
     @Test
     fun getMovie(){
+        `when`(movieCatalogueRepository.getDetailMovie(id)).thenReturn(dummyMovie)
         val movie = viewModel.getMovieDetail(id)
+        verify(movieCatalogueRepository).getDetailMovie(id)
         assertNotNull(movie)
-        assertEquals(dummyMovie?.movieId, movie?.movieId)
-        assertEquals(dummyMovie?.movieTitle, movie?.movieTitle)
-        assertEquals(dummyMovie?.moviePoster, movie?.moviePoster)
-        assertEquals(dummyMovie?.movieRelease, movie?.movieRelease)
-        assertEquals(dummyMovie?.movieRating, movie?.movieRating)
-        assertEquals(dummyMovie?.movieDescription, movie?.movieDescription)
-        assertEquals(dummyMovie?.movieTrailer, movie?.movieTrailer)
+        assertEquals(dummyMovie?.id, movie?.id)
+        assertEquals(dummyMovie?.title, movie?.title)
+        assertEquals(dummyMovie?.poster, movie?.poster)
+        assertEquals(dummyMovie?.release, movie?.release)
+        assertEquals(dummyMovie?.rating, movie?.rating)
+        assertEquals(dummyMovie?.description, movie?.description)
+        assertEquals(dummyMovie?.trailer, movie?.trailer)
     }
 
     @Test
     fun getMovieCrews(){
+        `when`(movieCatalogueRepository.getDetailMovie(id)).thenReturn(dummyMovie)
         val movie = viewModel.getMovieDetail(id)
+        verify(movieCatalogueRepository).getDetailMovie(id)
         val crews = viewModel.getMovieCrews(movie)
         assertNotNull(crews)
         assertEquals(5, crews?.size)
@@ -41,7 +55,9 @@ class DetailViewModelTest{
 
     @Test
     fun getMovieCrewDetail(){
+        `when`(movieCatalogueRepository.getDetailMovie(id)).thenReturn(dummyMovie)
         val movie = viewModel.getMovieDetail(id)
+        verify(movieCatalogueRepository).getDetailMovie(id)
         val crews = viewModel.getMovieCrews(movie)
         val crew = crews?.get(id)
         assertNotNull(crew)
@@ -52,20 +68,24 @@ class DetailViewModelTest{
 
     @Test
     fun getTvShow(){
+        `when`(movieCatalogueRepository.getDetailTvShow(id)).thenReturn(dummyTvShow)
         val tvShow = viewModel.getTvShowDetail(id)
+        verify(movieCatalogueRepository).getDetailTvShow(id)
         assertNotNull(tvShow)
-        assertEquals(dummyTvShow?.tvShowId, tvShow?.tvShowId)
-        assertEquals(dummyTvShow?.tvShowTitle, tvShow?.tvShowTitle)
-        assertEquals(dummyTvShow?.tvShowPoster, tvShow?.tvShowPoster)
-        assertEquals(dummyTvShow?.tvShowRelease, tvShow?.tvShowRelease)
-        assertEquals(dummyTvShow?.tvShowRating, tvShow?.tvShowRating)
-        assertEquals(dummyTvShow?.tvShowDescription, tvShow?.tvShowDescription)
-        assertEquals(dummyTvShow?.tvShowTrailer, tvShow?.tvShowTrailer)
+        assertEquals(dummyTvShow?.id, tvShow?.id)
+        assertEquals(dummyTvShow?.title, tvShow?.title)
+        assertEquals(dummyTvShow?.poster, tvShow?.poster)
+        assertEquals(dummyTvShow?.release, tvShow?.release)
+        assertEquals(dummyTvShow?.rating, tvShow?.rating)
+        assertEquals(dummyTvShow?.description, tvShow?.description)
+        assertEquals(dummyTvShow?.trailer, tvShow?.trailer)
     }
 
     @Test
     fun getTvShowCrews(){
+        `when`(movieCatalogueRepository.getDetailTvShow(id)).thenReturn(dummyTvShow)
         val tvShow = viewModel.getTvShowDetail(id)
+        verify(movieCatalogueRepository).getDetailTvShow(id)
         val crews = viewModel.getTvShowCrews(tvShow)
         assertNotNull(crews)
         assertEquals(3, crews?.size)
@@ -73,7 +93,9 @@ class DetailViewModelTest{
 
     @Test
     fun getTvShowCrewDetail(){
+        `when`(movieCatalogueRepository.getDetailTvShow(id)).thenReturn(dummyTvShow)
         val tvShow = viewModel.getTvShowDetail(id)
+        verify(movieCatalogueRepository).getDetailTvShow(id)
         val crews = viewModel.getTvShowCrews(tvShow)
         val crew = crews?.get(id)
         assertNotNull(crew)

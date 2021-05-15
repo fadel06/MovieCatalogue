@@ -1,10 +1,10 @@
-package com.belajar.moviecatalogue.utils
+package com.belajar.moviecatalogue
 
 import com.belajar.moviecatalogue.data.CrewEntity
 import com.belajar.moviecatalogue.data.ItemEntity
 
-object Data {
-    fun generateMovies(): List<ItemEntity> {
+object FakeDataRemote {
+    fun generateRemoteDummyMovies(): List<ItemEntity> {
         val movies: ArrayList<ItemEntity> = arrayListOf()
         movies.add(
             ItemEntity(
@@ -501,7 +501,7 @@ object Data {
         return movies
     }
 
-    fun generateTvShows(): List<ItemEntity> {
+    fun generateRemoteDummyTvShows(): List<ItemEntity> {
         val tvShows: ArrayList<ItemEntity> = arrayListOf()
         tvShows.add(
             ItemEntity(
@@ -818,12 +818,12 @@ object Data {
                         "Creator",
                         "ic_person"
 
-                        ),
+                    ),
                     CrewEntity(
                         "John Wells",
                         "Creator",
                         "shameless_john"
-                        )
+                    )
                 )
             )
         )
@@ -831,10 +831,10 @@ object Data {
     }
 
     fun movieDetail(id: Int): ItemEntity? {
-        return generateMovies()[id - 1]
+        return generateRemoteDummyMovies()[id - 1]
     }
 
     fun tvShowDetail(id: Int): ItemEntity? {
-        return generateTvShows()[id - 1]
+        return generateRemoteDummyTvShows()[id - 1]
     }
 }
