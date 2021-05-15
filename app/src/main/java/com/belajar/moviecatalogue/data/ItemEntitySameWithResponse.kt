@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ItemEntity(
+data class ItemEntitySameWithResponse(
     val id: Int?,
     val title: String?,
     val description: String?,

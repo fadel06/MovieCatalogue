@@ -90,7 +90,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/imgBgPoster"
-                        tools:progress="60" />
+                        tools:progress="0" />
 
 
                     <ImageView
@@ -222,5 +222,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <include
+        android:id="@+id/mLoading"
+        layout="@layout/item_loading"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

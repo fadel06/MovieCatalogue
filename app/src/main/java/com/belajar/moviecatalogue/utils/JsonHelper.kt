@@ -2,7 +2,7 @@ package com.belajar.moviecatalogue.utils
 
 import android.content.Context
 import com.belajar.moviecatalogue.data.CrewEntity
-import com.belajar.moviecatalogue.data.ItemEntity
+import com.belajar.moviecatalogue.data.ItemEntitySameWithResponse
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
@@ -23,8 +23,8 @@ class JsonHelper (private val context: Context) {
         }
     }
 
-    fun loadMovies() : List<ItemEntity> {
-        val movieList = ArrayList<ItemEntity>()
+    fun loadMovies() : List<ItemEntitySameWithResponse> {
+        val movieList = ArrayList<ItemEntitySameWithResponse>()
 
         try {
             val responseObject = JSONObject(parsingFileToString("movies.json").toString())
@@ -51,7 +51,7 @@ class JsonHelper (private val context: Context) {
                     crewList.add(crewResult)
                 }
 
-                val itemResult = ItemEntity(id, title, description, poster,
+                val itemResult = ItemEntitySameWithResponse(id, title, description, poster,
                     release, rating, trailer, crewList
                 )
                 movieList.add(itemResult)
@@ -64,8 +64,8 @@ class JsonHelper (private val context: Context) {
         return movieList
     }
 
-    fun loadTvShows() : List<ItemEntity> {
-        val tvShowList = ArrayList<ItemEntity>()
+    fun loadTvShows() : List<ItemEntitySameWithResponse> {
+        val tvShowList = ArrayList<ItemEntitySameWithResponse>()
 
         try {
             val responseObject = JSONObject(parsingFileToString("tvshows.json").toString())
@@ -92,7 +92,7 @@ class JsonHelper (private val context: Context) {
                     crewList.add(crewResult)
                 }
 
-                val itemResult = ItemEntity(id, title, description, poster,
+                val itemResult = ItemEntitySameWithResponse(id, title, description, poster,
                     release, rating, trailer, crewList
                 )
                 tvShowList.add(itemResult)
@@ -105,11 +105,11 @@ class JsonHelper (private val context: Context) {
         return tvShowList
     }
 
-    fun loadMovieDetail(id : Int): ItemEntity?{
+    fun loadMovieDetail(id : Int): ItemEntitySameWithResponse?{
         return loadMovies()[id -1]
     }
 
-    fun loadTvShowDetail(id : Int): ItemEntity?{
+    fun loadTvShowDetail(id : Int): ItemEntitySameWithResponse?{
         return loadTvShows()[id -1]
     }
 }

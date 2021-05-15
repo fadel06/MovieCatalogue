@@ -1,8 +1,10 @@
 package com.belajar.moviecatalogue.ui.home
 
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -10,6 +12,9 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.belajar.moviecatalogue.R
 import com.belajar.moviecatalogue.utils.Data
+import com.belajar.moviecatalogue.utils.EspressoIdlingResource
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -20,6 +25,17 @@ class HomeActivityTest {
 
     @get:Rule
     var activityRule = ActivityScenarioRule(HomeActivity::class.java)
+
+    @Before
+    fun setUp(){
+        ActivityScenario.launch(HomeActivity::class.java)
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.idlingResource)
+    }
+
+    @After
+    fun tearDown(){
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.idlingResource)
+    }
 
     @Test
     fun bottomNavigationBehaviour(){
@@ -32,6 +48,7 @@ class HomeActivityTest {
 
     @Test
     fun loadMovies(){
+//        delayTwoSecond()
         onView(withId(R.id.mRecyclerView)).check(matches(isDisplayed()))
         onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size - 1)
@@ -40,6 +57,7 @@ class HomeActivityTest {
 
     @Test
     fun loadDetailMovie(){
+//        delayTwoSecond()
         onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
@@ -52,6 +70,7 @@ class HomeActivityTest {
                 ViewActions.click()
             )
         )
+//        delayTwoSecond()
         onView(withId(R.id.tvTitle)).check(matches(isDisplayed()))
         onView(withId(R.id.tvTitle)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.tvReleaseDate)).check(matches(isDisplayed()))
@@ -70,6 +89,7 @@ class HomeActivityTest {
 
     @Test
     fun loadTvShows(){
+//        delayTwoSecond()
         onView(withId(R.id.navigationTvShow)).perform(ViewActions.click())
         onView(withId(R.id.mRecyclerView)).check(matches(isDisplayed()))
         onView(withId(R.id.mRecyclerView)).perform(
@@ -80,6 +100,7 @@ class HomeActivityTest {
     @Test
     fun loadDetailTvShow(){
         onView(withId(R.id.navigationTvShow)).perform(ViewActions.click())
+//        delayTwoSecond()
         onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
@@ -92,6 +113,7 @@ class HomeActivityTest {
                 ViewActions.click()
             )
         )
+//        delayTwoSecond()
         onView(withId(R.id.tvTitle)).check(matches(isDisplayed()))
         onView(withId(R.id.tvTitle)).check(matches(withText(dummyTvShow[0].title)))
         onView(withId(R.id.tvReleaseDate)).check(matches(isDisplayed()))
@@ -107,6 +129,5 @@ class HomeActivityTest {
         )
         pressBack()
     }
-
 
 }   

@@ -1,10 +1,15 @@
 package com.belajar.moviecatalogue.ui.movie
 
-import com.belajar.moviecatalogue.data.ItemEntity
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.belajar.moviecatalogue.data.ItemEntitySameWithResponse
 import com.belajar.moviecatalogue.data.source.MovieCatalogueRepository
 import com.belajar.moviecatalogue.utils.Data
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
@@ -16,8 +21,14 @@ import org.mockito.junit.MockitoJUnitRunner
 class MovieViewModelTest{
     private lateinit var viewModel: MovieViewModel
 
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
     @Mock
     private lateinit var movieCatalogueRepository: MovieCatalogueRepository
+
+    @Mock
+    private lateinit var observer: Observer<List<ItemEntitySameWithResponse>>
 
     @Before
     fun setUp(){
@@ -26,12 +37,17 @@ class MovieViewModelTest{
 
     @Test
     fun getMovies(){
-        `when`(movieCatalogueRepository.getAllMovies()).thenReturn(
-            Data.generateMovies() as ArrayList<ItemEntity>
-        )
-        val movies = viewModel.getMovies()
+        val dummyMovies = Data.generateMovies()
+        val listMovies = MutableLiveData<List<ItemEntitySameWithResponse>>()
+        listMovies.value = dummyMovies
+
+        `when`(movieCatalogueRepository.getAllMovies()).thenReturn(listMovies)
+        val movies = viewModel.getMovies().value
         verify(movieCatalogueRepository).getAllMovies()
         assertNotNull(movies)
-        assertEquals(16, movies.size)
+        assertEquals(16, movies?.size)
+
+        viewModel.getMovies().observeForever(observer)
+        verify(observer).onChanged(dummyMovies)
     }
 }

@@ -36,13 +36,6 @@ android {
     buildFeatures{
         viewBinding true
     }
-
-    buildTypes.each {
-        it.buildConfigField 'String', 'API_KEY', API_KEY
-        it.buildConfigField 'String', 'BASE_URL', BASE_URL
-        it.buildConfigField 'String', 'IMG_URL', IMG_URL
-        it.buildConfigField 'String', 'VIDEO_URL', VIDEO_URL
-    }
 }
 
 dependencies {
@@ -76,5 +69,8 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$androidTestVersion"
     androidTestImplementation "androidx.test:rules:$androidTestVersion"
     androidTestImplementation "androidx.test.ext:junit:$junitExtversion"
+    testImplementation "androidx.arch.core:core-testing:$androidCoreTestVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
 
 }

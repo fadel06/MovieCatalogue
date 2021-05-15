@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.belajar.moviecatalogue.R
-import com.belajar.moviecatalogue.data.ItemEntity
+import com.belajar.moviecatalogue.data.ItemEntitySameWithResponse
 import com.belajar.moviecatalogue.databinding.ItemListBinding
 import com.belajar.moviecatalogue.ui.detail.DetailActivity
 import com.belajar.moviecatalogue.utils.visibility
@@ -15,11 +15,11 @@ import com.bumptech.glide.request.RequestOptions
 
 class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
-    private var listItems = ArrayList<ItemEntity>()
+    private var listItems = ArrayList<ItemEntitySameWithResponse>()
 
     private var type: String? = null
 
-    fun setItems(items: List<ItemEntity>?, type: String?){
+    fun setItems(items: List<ItemEntitySameWithResponse>?, type: String?){
         if (items == null) return
         this.listItems.clear()
         this.listItems.addAll(items)
@@ -39,7 +39,7 @@ class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
     override fun getItemCount(): Int = listItems.size
 
     inner class ViewHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ItemEntity){
+        fun bind(item: ItemEntitySameWithResponse){
             with(binding){
                 val idResource = itemView.context.resources.getIdentifier(item.poster, "drawable", itemView.context.packageName)
                 tvTitle.text = item.title

@@ -1,14 +1,15 @@
 package com.belajar.moviecatalogue.data.source
 
-import com.belajar.moviecatalogue.data.ItemEntity
+import androidx.lifecycle.LiveData
+import com.belajar.moviecatalogue.data.ItemEntitySameWithResponse
 
 interface MovieCatalogueDataSource {
 
-    fun getAllMovies(): List<ItemEntity>
+    fun getAllMovies(): LiveData<List<ItemEntitySameWithResponse>>
 
-    fun getAllTvShows(): List<ItemEntity>
+    fun getAllTvShows(): LiveData<List<ItemEntitySameWithResponse>>
 
-    fun getDetailMovie(id: Int) : ItemEntity?
+    fun getDetailMovie(id: Int) : LiveData<ItemEntitySameWithResponse?>
 
-    fun getDetailTvShow(id: Int) : ItemEntity?
+    fun getDetailTvShow(id: Int) : LiveData<ItemEntitySameWithResponse?>
 }
