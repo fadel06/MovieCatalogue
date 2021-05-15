@@ -17,7 +17,6 @@ object Data {
                 "October 3, 2018",
                 "75",
                 "https://youtu.be/nSbzyEJ8X9E",
-
                 listOf(
                     CrewEntity(
                         "Bradley Cooper",
