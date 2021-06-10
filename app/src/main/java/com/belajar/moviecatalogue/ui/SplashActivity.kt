@@ -1,11 +1,10 @@
 package com.belajar.moviecatalogue.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.WindowInsets
+import androidx.appcompat.app.AppCompatActivity
 import com.belajar.moviecatalogue.R
 import com.belajar.moviecatalogue.ui.home.HomeActivity
 

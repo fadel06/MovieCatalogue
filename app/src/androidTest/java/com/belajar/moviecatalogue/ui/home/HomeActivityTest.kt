@@ -48,7 +48,6 @@ class HomeActivityTest {
 
     @Test
     fun loadMovies(){
-//        delayTwoSecond()
         onView(withId(R.id.mRecyclerView)).check(matches(isDisplayed()))
         onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size - 1)
@@ -57,7 +56,6 @@ class HomeActivityTest {
 
     @Test
     fun loadDetailMovie(){
-//        delayTwoSecond()
         onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
@@ -70,7 +68,6 @@ class HomeActivityTest {
                 ViewActions.click()
             )
         )
-//        delayTwoSecond()
         onView(withId(R.id.tvTitle)).check(matches(isDisplayed()))
         onView(withId(R.id.tvTitle)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.tvReleaseDate)).check(matches(isDisplayed()))
@@ -89,7 +86,6 @@ class HomeActivityTest {
 
     @Test
     fun loadTvShows(){
-//        delayTwoSecond()
         onView(withId(R.id.navigationTvShow)).perform(ViewActions.click())
         onView(withId(R.id.mRecyclerView)).check(matches(isDisplayed()))
         onView(withId(R.id.mRecyclerView)).perform(
@@ -100,7 +96,6 @@ class HomeActivityTest {
     @Test
     fun loadDetailTvShow(){
         onView(withId(R.id.navigationTvShow)).perform(ViewActions.click())
-//        delayTwoSecond()
         onView(withId(R.id.mRecyclerView)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
@@ -113,7 +108,6 @@ class HomeActivityTest {
                 ViewActions.click()
             )
         )
-//        delayTwoSecond()
         onView(withId(R.id.tvTitle)).check(matches(isDisplayed()))
         onView(withId(R.id.tvTitle)).check(matches(withText(dummyTvShow[0].title)))
         onView(withId(R.id.tvReleaseDate)).check(matches(isDisplayed()))

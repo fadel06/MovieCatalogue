@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.belajar.moviecatalogue.R
 import com.belajar.moviecatalogue.databinding.ActivityDetailBinding
 import com.belajar.moviecatalogue.ui.adapter.CrewAdapter
+import com.belajar.moviecatalogue.utils.getIdDrawable
 import com.belajar.moviecatalogue.utils.visibility
 import com.belajar.moviecatalogue.viewmodel.ViewModelFactory
 import com.bumptech.glide.Glide
@@ -21,7 +22,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private val mAdapter = CrewAdapter()
-    private lateinit var  detailViewModel : DetailViewModel
+    private lateinit var detailViewModel: DetailViewModel
 
     private lateinit var binding: ActivityDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,8 @@ class DetailActivity : AppCompatActivity() {
         val toolbar = binding.mToolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.navigationIcon = ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_back, null)
+        toolbar.navigationIcon =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_back, null)
         toolbar.setNavigationOnClickListener {
             finish()
         }
@@ -48,19 +50,21 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.rvCrew.apply {
-            layoutManager = LinearLayoutManager(this@DetailActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(this@DetailActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = mAdapter
         }
     }
 
     private fun loadDataMovie(movieId: Int) {
         binding.mLoading.mProgressBar visibility true
-        detailViewModel.getMovieDetail(movieId).observe(this, {
-            movie ->
+        detailViewModel.getMovieDetail(movieId).observe(this, { movie ->
             binding.apply {
                 supportActionBar?.title = movie?.title
-                Glide.with(this@DetailActivity).load(getIdResources(movie?.poster)).into(imgPoster)
-                Glide.with(this@DetailActivity).load(getIdResources(movie?.poster)).into(imgBgPoster)
+                Glide.with(this@DetailActivity)
+                    .load(getIdDrawable(this@DetailActivity, movie?.poster)).into(imgPoster)
+                Glide.with(this@DetailActivity)
+                    .load(getIdDrawable(this@DetailActivity, movie?.poster)).into(imgBgPoster)
                 tvTitle.text = movie?.title
                 tvReleaseDate.text = movie?.release
                 tvRating.text = movie?.rating
@@ -81,12 +85,14 @@ class DetailActivity : AppCompatActivity() {
 
     private fun loadDataTvShow(tvShowId: Int) {
         binding.mLoading.mProgressBar visibility true
-        detailViewModel.getTvShowDetail(tvShowId).observe(this,{
-            tvShow ->
+        detailViewModel.getTvShowDetail(tvShowId).observe(this, { tvShow ->
             binding.apply {
                 supportActionBar?.title = tvShow?.title
-                Glide.with(this@DetailActivity).load(getIdResources(tvShow?.poster)).into(imgPoster)
-                Glide.with(this@DetailActivity).load(getIdResources(tvShow?.poster)).into(imgBgPoster)
+                Glide.with(this@DetailActivity)
+                    .load(getIdDrawable(this@DetailActivity, tvShow?.poster)).into(imgPoster)
+                Glide.with(this@DetailActivity)
+                    .load(getIdDrawable(this@DetailActivity, tvShow?.poster))
+                    .into(imgBgPoster)
                 tvTitle.text = tvShow?.title
                 tvReleaseDate.text = tvShow?.release
                 tvRating.text = tvShow?.rating
@@ -102,9 +108,5 @@ class DetailActivity : AppCompatActivity() {
             binding.rvCrew.adapter = mAdapter
             binding.mLoading.mProgressBar visibility false
         })
-    }
-
-    private fun getIdResources(name : String?) : Int {
-        return resources.getIdentifier(name, "drawable", packageName)
     }
 }

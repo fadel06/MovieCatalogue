@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.belajar.moviecatalogue.R
 import com.belajar.moviecatalogue.databinding.ActivityHomeBinding
-import com.belajar.moviecatalogue.ui.MovieAndTvShowFragment
-import com.belajar.moviecatalogue.ui.MovieAndTvShowFragment.Companion.EXTRA_TYPE
+import com.belajar.moviecatalogue.ui.movieandtvshow.MovieAndTvShowFragment
+import com.belajar.moviecatalogue.ui.movieandtvshow.MovieAndTvShowFragment.Companion.EXTRA_TYPE
 import com.belajar.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
 import com.belajar.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_TV_SHOW
 import com.google.android.material.bottomnavigation.BottomNavigationView

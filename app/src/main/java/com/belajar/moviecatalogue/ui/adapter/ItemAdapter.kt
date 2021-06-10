@@ -9,6 +9,7 @@ import com.belajar.moviecatalogue.R
 import com.belajar.moviecatalogue.data.ItemEntitySameWithResponse
 import com.belajar.moviecatalogue.databinding.ItemListBinding
 import com.belajar.moviecatalogue.ui.detail.DetailActivity
+import com.belajar.moviecatalogue.utils.getIdDrawable
 import com.belajar.moviecatalogue.utils.visibility
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -41,11 +42,10 @@ class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemEntitySameWithResponse){
             with(binding){
-                val idResource = itemView.context.resources.getIdentifier(item.poster, "drawable", itemView.context.packageName)
                 tvTitle.text = item.title
                 tvRating.text = item.rating
                 Glide.with(itemView.context)
-                    .load(idResource)
+                    .load(getIdDrawable(itemView.context, item.poster))
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                     .error(R.drawable.ic_error)
                     .into(imgPoster)

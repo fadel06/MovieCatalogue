@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.belajar.moviecatalogue.utils
 
 import androidx.lifecycle.LiveData

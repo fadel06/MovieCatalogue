@@ -1,4 +1,4 @@
-package com.belajar.moviecatalogue.ui
+package com.belajar.moviecatalogue.ui.movieandtvshow
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,8 +12,6 @@ import com.belajar.moviecatalogue.data.ItemEntitySameWithResponse
 import com.belajar.moviecatalogue.databinding.MovieAndTvShowFragmentBinding
 import com.belajar.moviecatalogue.ui.adapter.ItemAdapter
 import com.belajar.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
-import com.belajar.moviecatalogue.ui.movie.MovieViewModel
-import com.belajar.moviecatalogue.ui.tvshow.TvShowViewModel
 import com.belajar.moviecatalogue.utils.visibility
 import com.belajar.moviecatalogue.viewmodel.ViewModelFactory
 
@@ -24,6 +22,7 @@ class MovieAndTvShowFragment : Fragment() {
     private val binding get() = _binding
     private var itemList: List<ItemEntitySameWithResponse>? = null
     private val itemAdapter = ItemAdapter()
+    private var viewModel: MovieAndTvShowViewModel? = null
 
     companion object {
         const val EXTRA_TYPE = "extra_type"
@@ -48,23 +47,19 @@ class MovieAndTvShowFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
+            viewModel = ViewModelProvider(
+                this,
+                factory
+            )[MovieAndTvShowViewModel::class.java]
             val spanCount: Int
             when {
                 type?.equals(EXTRA_MOVIE) == true -> {
-                    val movieViewModel = ViewModelProvider(
-                        this,
-                        factory
-                    )[MovieViewModel::class.java]
                     spanCount = 2
-                    loadMovies(movieViewModel)
+                    loadMovies()
                 }
                 else -> {
-                    val tvShowViewModel = ViewModelProvider(
-                        this,
-                        factory
-                    )[TvShowViewModel::class.java]
                     spanCount = 3
-                    loadTvShows(tvShowViewModel)
+                    loadTvShows()
                 }
             }
 
@@ -80,10 +75,10 @@ class MovieAndTvShowFragment : Fragment() {
         }
     }
 
-    private fun loadTvShows(tvShowViewModel: TvShowViewModel) {
+    private fun loadTvShows() {
         binding?.mLoading?.mProgressBar?.visibility(true)
 
-        tvShowViewModel.getTvShows().observe(this, { tvShows ->
+        viewModel?.getTvShows()?.observe(this, { tvShows ->
             itemList = tvShows
             itemAdapter.setItems(itemList, type)
             binding?.mRecyclerView?.adapter = itemAdapter
@@ -91,10 +86,9 @@ class MovieAndTvShowFragment : Fragment() {
         })
     }
 
-    private fun loadMovies(movieViewModel: MovieViewModel) {
+    private fun loadMovies() {
         binding?.mLoading?.mProgressBar?.visibility(true)
-
-        movieViewModel.getMovies().observe(this, { movies ->
+        viewModel?.getMovies()?.observe(this, { movies ->
             itemList = movies
             itemAdapter.setItems(itemList, type)
             binding?.mRecyclerView?.adapter = itemAdapter

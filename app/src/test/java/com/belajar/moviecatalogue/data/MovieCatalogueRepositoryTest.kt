@@ -93,12 +93,4 @@ class MovieCatalogueRepositoryTest {
         assertEquals(dummyTvShow?.trailer, resultTvShow?.trailer)
         assertEquals(dummyTvShow?.crews?.size, resultTvShow?.crews?.size)
     }
-
-    private fun delayTwoSecond() {
-        try {
-            Thread.sleep(2000)
-        } catch (e: InterruptedException) {
-            e.printStackTrace()
-        }
-    }
 }

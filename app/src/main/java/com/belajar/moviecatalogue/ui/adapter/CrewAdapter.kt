@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.belajar.moviecatalogue.R
 import com.belajar.moviecatalogue.data.CrewEntity
 import com.belajar.moviecatalogue.databinding.ItemCrewBinding
+import com.belajar.moviecatalogue.utils.getIdDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
@@ -33,16 +34,14 @@ class CrewAdapter : RecyclerView.Adapter<CrewAdapter.ViewHolder>() {
     inner class ViewHolder (private val binding: ItemCrewBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(crew: CrewEntity){
             with(binding){
-                val idResource = itemView.context.resources.getIdentifier(crew.crewPhoto, "drawable", itemView.context.packageName)
                 tvName.text = crew.crewName
                 tvPosition.text = crew.crewPosition
 
                 Glide.with(itemView.context)
-                    .load(idResource)
+                    .load(getIdDrawable(itemView.context, crew.crewPhoto))
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
                     .error(R.drawable.ic_error)
                     .into(imgCrew)
-
             }
 
         }
