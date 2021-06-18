@@ -6,21 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.belajar.moviecatalogue.R
-import com.belajar.moviecatalogue.data.ItemEntitySameWithResponse
-import com.belajar.moviecatalogue.databinding.ItemListBinding
+import com.belajar.moviecatalogue.data.source.local.entity.MovieEntity
+import com.belajar.moviecatalogue.databinding.ItemGridListBinding
 import com.belajar.moviecatalogue.ui.detail.DetailActivity
+import com.belajar.moviecatalogue.ui.detail.DetailViewModel.Companion.MOVIE
 import com.belajar.moviecatalogue.utils.getIdDrawable
 import com.belajar.moviecatalogue.utils.visibility
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+class MovieAdapter: RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
-    private var listItems = ArrayList<ItemEntitySameWithResponse>()
-
+    private var listItems = ArrayList<MovieEntity>()
     private var type: String? = null
 
-    fun setItems(items: List<ItemEntitySameWithResponse>?, type: String?){
+    fun setItems(items: List<MovieEntity>?, type: String?){
         if (items == null) return
         this.listItems.clear()
         this.listItems.addAll(items)
@@ -28,7 +28,7 @@ class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding = ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding = ItemGridListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
@@ -39,8 +39,8 @@ class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = listItems.size
 
-    inner class ViewHolder(private val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ItemEntitySameWithResponse){
+    inner class ViewHolder(private val binding: ItemGridListBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: MovieEntity){
             with(binding){
                 tvTitle.text = item.title
                 tvRating.text = item.rating
@@ -54,7 +54,8 @@ class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
                         groupTitle visibility true
                     } else {
                         val intent = Intent(itemView.context, DetailActivity::class.java)
-                        intent.putExtra(type, item.id)
+                        intent.putExtra(DetailActivity.EXTRA_ID_ITEM, item.id)
+                        intent.putExtra(DetailActivity.EXTRA_TYPE, MOVIE)
                         itemView.context.startActivity(intent)
                         groupTitle visibility false
                     }

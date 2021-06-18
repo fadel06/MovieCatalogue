@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.belajar.moviecatalogue.data.source.MovieCatalogueRepository
 import com.belajar.moviecatalogue.di.Injection
 import com.belajar.moviecatalogue.ui.detail.DetailViewModel
+import com.belajar.moviecatalogue.ui.favorite.MyFavoriteViewModel
 import com.belajar.moviecatalogue.ui.movieandtvshow.MovieAndTvShowViewModel
 
 class ViewModelFactory private constructor(private val mMovieCatalogueRepository: MovieCatalogueRepository) :
@@ -31,6 +32,9 @@ class ViewModelFactory private constructor(private val mMovieCatalogueRepository
             }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 DetailViewModel(mMovieCatalogueRepository) as T
+            }
+            modelClass.isAssignableFrom(MyFavoriteViewModel::class.java)-> {
+                MyFavoriteViewModel(mMovieCatalogueRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

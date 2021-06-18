@@ -34,7 +34,8 @@
           "crewPosition" : "Story",
           "crewPhoto" : "a_start_is_born_will_a_wellman"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 2,
@@ -60,7 +61,8 @@
           "crewPosition" : "Screenplay",
           "crewPhoto" : "battle_angel_james_cameron"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 3,
@@ -101,7 +103,8 @@
           "crewPosition" : "Story",
           "crewPhoto" : "aquaman_geoff_johns"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 4,
@@ -132,7 +135,8 @@
           "crewPosition" : "Story",
           "crewPhoto" : "ic_person"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 5,
@@ -153,7 +157,8 @@
           "crewPosition" : "Screenplay",
           "crewPhoto" : "ic_person"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 6,
@@ -179,7 +184,8 @@
           "crewPosition" : "Screenplay",
           "crewPhoto" : "ic_person"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 7,
@@ -200,7 +206,8 @@
           "crewPosition" : "Screenplay",
           "crewPhoto" : "fantastic_beasts_j_k_rowling"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 8,
@@ -216,7 +223,8 @@
           "crewPosition" : "Director, Screenplay",
           "crewPhoto" : "glass_shyamalan"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 9,
@@ -237,7 +245,8 @@
           "crewPosition" : "Novel",
           "crewPhoto" : "htyd_cressida"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 10,
@@ -268,7 +277,8 @@
           "crewPosition" : "Screenplay",
           "crewPhoto" : "avengers_christopher"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 11,
@@ -289,7 +299,8 @@
           "crewPosition" : "Screenplay",
           "crewPhoto" : "ic_person"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 12,
@@ -315,7 +326,8 @@
           "crewPosition" : "Screenplay",
           "crewPhoto" : "ic_person"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 13,
@@ -351,7 +363,8 @@
           "crewPosition" : "Screenplay",
           "crewPhoto" : "mortal_peter"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 14,
@@ -377,7 +390,8 @@
           "crewPosition" : "Screenplay",
           "crewPhoto" : "overlord_mark"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 15,
@@ -413,7 +427,8 @@
           "crewPosition" : "Story",
           "crewPhoto" : "ralph_jim"
         }
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id" : 16,
@@ -439,7 +454,8 @@
           "crewPosition" : "Screenplay",
           "crewPhoto" : "ic_person"
         }
-      ]
+      ],
+      "isFavorite": false
     }
   ]
 }

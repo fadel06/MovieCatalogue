@@ -13,4 +13,12 @@
     <string name="crew">Crew</string>
     <string name="splash_logo">Splash Logo</string>
     <string name="slogan">FOR YOUR MOVIE AND TV SHOW REFERENCE</string>
+    <string name="favorite_menu">MyFavorite</string>
+    <string name="my_favorite">My Favorite</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="something_wrong">Terjadi Kesalahan</string>
+    <string name="empty_list">Data Kosong</string>
+    <string name="success_add_favorite_movie">Berhasil menambahkan Movie favorite</string>
+    <string name="success_add_favorite_tv_show">Berhasil menambahkan Tv Show favorite</string>
 </resources>

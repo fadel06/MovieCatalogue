@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.belajar.moviecatalogue.R
-import com.belajar.moviecatalogue.data.CrewEntity
+import com.belajar.moviecatalogue.data.source.local.entity.CrewEntity
 import com.belajar.moviecatalogue.databinding.ItemCrewBinding
 import com.belajar.moviecatalogue.utils.getIdDrawable
 import com.bumptech.glide.Glide

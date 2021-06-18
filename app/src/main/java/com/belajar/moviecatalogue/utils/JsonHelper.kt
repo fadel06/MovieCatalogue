@@ -1,8 +1,7 @@
 package com.belajar.moviecatalogue.utils
 
 import android.content.Context
-import com.belajar.moviecatalogue.data.CrewEntity
-import com.belajar.moviecatalogue.data.ItemEntitySameWithResponse
+import com.belajar.moviecatalogue.data.source.local.entity.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
@@ -23,8 +22,8 @@ class JsonHelper (private val context: Context) {
         }
     }
 
-    fun loadMovies() : List<ItemEntitySameWithResponse> {
-        val movieList = ArrayList<ItemEntitySameWithResponse>()
+    fun loadMovies() : List<MovieEntity> {
+        val movieList = ArrayList<MovieEntity>()
 
         try {
             val responseObject = JSONObject(parsingFileToString("movies.json").toString())
@@ -32,7 +31,6 @@ class JsonHelper (private val context: Context) {
             for (i in 0 until listArray.length()){
                 val movie = listArray.getJSONObject(i)
                 val crewList = ArrayList<CrewEntity>()
-
                 val id = movie.getInt("id")
                 val title = movie.getString("title")
                 val description = movie.getString("description")
@@ -50,9 +48,10 @@ class JsonHelper (private val context: Context) {
                     val crewResult = CrewEntity(crewName, crewPosition, crewPhoto)
                     crewList.add(crewResult)
                 }
+                val isFavorite = movie.getBoolean("isFavorite")
 
-                val itemResult = ItemEntitySameWithResponse(id, title, description, poster,
-                    release, rating, trailer, crewList
+                val itemResult = MovieEntity(id, title, description, poster,
+                    release, rating, trailer, crewList, isFavorite
                 )
                 movieList.add(itemResult)
 
@@ -64,24 +63,24 @@ class JsonHelper (private val context: Context) {
         return movieList
     }
 
-    fun loadTvShows() : List<ItemEntitySameWithResponse> {
-        val tvShowList = ArrayList<ItemEntitySameWithResponse>()
+    fun loadTvShows() : List<TvShowEntity> {
+        val tvShowList = ArrayList<TvShowEntity>()
 
         try {
             val responseObject = JSONObject(parsingFileToString("tvshows.json").toString())
             val listArray = responseObject.getJSONArray("result")
             for (i in 0 until listArray.length()){
                 val crewList = ArrayList<CrewEntity>()
-                val movie = listArray.getJSONObject(i)
+                val tvShow = listArray.getJSONObject(i)
 
-                val id = movie.getInt("id")
-                val title = movie.getString("title")
-                val description = movie.getString("description")
-                val poster = movie.getString("poster")
-                val release = movie.getString("release")
-                val rating = movie.getString("rating")
-                val trailer = movie.getString("trailer")
-                val listCrews = movie.getJSONArray("crews")
+                val id = tvShow.getInt("id")
+                val title = tvShow.getString("title")
+                val description = tvShow.getString("description")
+                val poster = tvShow.getString("poster")
+                val release = tvShow.getString("release")
+                val rating = tvShow.getString("rating")
+                val trailer = tvShow.getString("trailer")
+                val listCrews = tvShow.getJSONArray("crews")
                 for (indexCrew in 0 until listCrews.length()){
                     val crew = listCrews.getJSONObject(indexCrew)
                     val crewName = crew.getString("crewName")
@@ -91,9 +90,10 @@ class JsonHelper (private val context: Context) {
                     val crewResult = CrewEntity(crewName, crewPosition, crewPhoto)
                     crewList.add(crewResult)
                 }
+                val isFavorite = tvShow.getBoolean("isFavorite")
 
-                val itemResult = ItemEntitySameWithResponse(id, title, description, poster,
-                    release, rating, trailer, crewList
+                val itemResult = TvShowEntity(id, title, description, poster,
+                    release, rating, trailer, crewList, isFavorite
                 )
                 tvShowList.add(itemResult)
 
@@ -105,11 +105,11 @@ class JsonHelper (private val context: Context) {
         return tvShowList
     }
 
-    fun loadMovieDetail(id : Int): ItemEntitySameWithResponse?{
-        return loadMovies()[id -1]
+    fun loadMovieDetail(movieId : Int): MovieEntity{
+        return loadMovies()[movieId -1]
     }
 
-    fun loadTvShowDetail(id : Int): ItemEntitySameWithResponse?{
-        return loadTvShows()[id -1]
+    fun loadTvShowDetail(tvShowId : Int): TvShowEntity{
+        return loadTvShows()[tvShowId -1]
     }
 }

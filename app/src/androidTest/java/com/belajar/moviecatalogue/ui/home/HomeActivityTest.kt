@@ -42,9 +42,16 @@ class HomeActivityTest {
         onView(withId(R.id.nav_view)).check(matches(isDisplayed()))
         onView(withId(R.id.navigationMovie)).check(matches(isDisplayed()))
         onView(withId(R.id.navigationTvShow)).check(matches(isDisplayed()))
-        onView(withId(R.id.navigationTvShow)).perform(ViewActions.click())
+        onView(withId(R.id.navigationFavorite)).check(matches(isDisplayed()))
         onView(withId(R.id.navigationMovie)).perform(ViewActions.click())
+        onView(withId(R.id.navigationTvShow)).perform(ViewActions.click())
+        onView(withId(R.id.navigationFavorite)).perform(ViewActions.click())
     }
+
+//    @Test
+//    fun tabLayoutFavoriteBehaviour(){
+//        onView(withId(R.id.navigationFavorite)).perform(ViewActions.click())
+//    }
 
     @Test
     fun loadMovies(){
@@ -79,7 +86,7 @@ class HomeActivityTest {
         onView(withId(R.id.mScrollView)).perform(ViewActions.swipeUp())
         onView(withId(R.id.rvCrew)).check(matches(isDisplayed()))
         onView(withId(R.id.rvCrew)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>((dummyMovie[0].crews?.size ?: 0) - 1)
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>((dummyMovie[0].crewEntity?.size ?: 0) - 1)
         )
         pressBack()
     }
@@ -119,7 +126,7 @@ class HomeActivityTest {
         onView(withId(R.id.mScrollView)).perform(ViewActions.swipeUp())
         onView(withId(R.id.rvCrew)).check(matches(isDisplayed()))
         onView(withId(R.id.rvCrew)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>((dummyTvShow[0].crews?.size ?: 0) - 1)
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>((dummyTvShow[0].crewEntity?.size ?: 0) - 1)
         )
         pressBack()
     }

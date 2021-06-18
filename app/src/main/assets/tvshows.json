@@ -24,7 +24,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "arrow_andrew"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 2,
       "title": "Doom Patrol",
@@ -39,7 +40,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "doom_jeremy"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 3,
       "title": "Dragon Ball",
@@ -54,7 +56,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "dragon_akira"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 4,
       "title": "Fairy Tail",
@@ -69,7 +72,8 @@
           "crewPosition": "Director",
           "crewPhoto" : "ic_person"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 5,
       "title": "Family Guy",
@@ -84,7 +88,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "family_guy_seth"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 6,
       "title": "The Flash",
@@ -109,7 +114,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "flash_greg"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 7,
       "title": "Game of Thrones",
@@ -129,7 +135,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "got_weiss"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 8,
       "title": "Gotham",
@@ -144,7 +151,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "gotham_bruno"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 9,
       "title": "Grey's Anatomy",
@@ -159,7 +167,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "greys_shonda"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 10,
       "title": "Hanna",
@@ -174,7 +183,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "hannd_david"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 11,
       "title": "Marvel's Iron Fist",
@@ -189,7 +199,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "ic_person"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 12,
       "title": "Naruto Shippūden",
@@ -204,7 +215,8 @@
           "crewPosition": "Writer",
           "crewPhoto" : "naruto_katsuhiko"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 13,
       "title": "NCIS",
@@ -224,7 +236,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "ic_person"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 14,
       "title": "Riverdale",
@@ -239,7 +252,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "riverdale_roberto"
         }
-      ]
+      ],
+      "isFavorite": false
     },{
       "id": 15,
       "title": "Shameless",
@@ -259,7 +273,8 @@
           "crewPosition": "Creator",
           "crewPhoto" : "shameless_john"
         }
-      ]
+      ],
+      "isFavorite": false
     }
   ]
 }

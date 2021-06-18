@@ -3,9 +3,11 @@ package com.belajar.moviecatalogue.ui.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.belajar.moviecatalogue.data.ItemEntitySameWithResponse
+import com.belajar.moviecatalogue.data.source.local.entity.MovieEntity
 import com.belajar.moviecatalogue.data.source.MovieCatalogueRepository
+import com.belajar.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.belajar.moviecatalogue.utils.Data
+import com.belajar.moviecatalogue.vo.Resource
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -19,12 +21,17 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class DetailViewModelTest{
+
+    companion object {
+        private const val MOVIE = "movie"
+        private const val TV_SHOW = "tv_show"
+    }
     private val id = 1
     private lateinit var viewModel: DetailViewModel
-    private val dummyMovie = Data.movieDetail(id)
-    private val dummyTvShow = Data.tvShowDetail(id)
-    private val dummyMovieCrew = dummyMovie?.crews?.get(id)
-    private val dummyTvShowCrew = dummyTvShow?.crews?.get(id)
+    private val dummyMovie = Resource.success(Data.movieDetail(id))
+    private val dummyTvShow = Resource.success(Data.tvShowDetail(id))
+    private val dummyMovieCrew = dummyMovie.data?.crewEntity?.get(id)
+    private val dummyTvShowCrew = dummyTvShow.data?.crewEntity?.get(id)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -33,7 +40,10 @@ class DetailViewModelTest{
     private lateinit var movieCatalogueRepository: MovieCatalogueRepository
 
     @Mock
-    private lateinit var observer: Observer<ItemEntitySameWithResponse?>
+    private lateinit var movieObserver: Observer<Resource<MovieEntity>>
+
+    @Mock
+    private lateinit var tvShowObserver: Observer<Resource<TvShowEntity>>
 
 
     @Before
@@ -43,31 +53,33 @@ class DetailViewModelTest{
 
     @Test
     fun getMovie(){
-        val movieResult = MutableLiveData<ItemEntitySameWithResponse>()
+        val movieResult = MutableLiveData<Resource<MovieEntity>>()
         movieResult.value = dummyMovie
         `when`(movieCatalogueRepository.getDetailMovie(id)).thenReturn(movieResult)
-        val movie = viewModel.getMovieDetail(id).value
+        viewModel.setItem(id, MOVIE)
+        val movie = viewModel.getMovie().value?.data
         verify(movieCatalogueRepository).getDetailMovie(id)
         assertNotNull(movie)
-        assertEquals(dummyMovie?.id, movie?.id)
-        assertEquals(dummyMovie?.title, movie?.title)
-        assertEquals(dummyMovie?.poster, movie?.poster)
-        assertEquals(dummyMovie?.release, movie?.release)
-        assertEquals(dummyMovie?.rating, movie?.rating)
-        assertEquals(dummyMovie?.description, movie?.description)
-        assertEquals(dummyMovie?.trailer, movie?.trailer)
+        assertEquals(dummyMovie.data?.id, movie?.id)
+        assertEquals(dummyMovie.data?.title, movie?.title)
+        assertEquals(dummyMovie.data?.poster, movie?.poster)
+        assertEquals(dummyMovie.data?.release, movie?.release)
+        assertEquals(dummyMovie.data?.rating, movie?.rating)
+        assertEquals(dummyMovie.data?.description, movie?.description)
+        assertEquals(dummyMovie.data?.trailer, movie?.trailer)
 
-        viewModel.getMovieDetail(id).observeForever(observer)
-        verify(observer).onChanged(dummyMovie)
+        viewModel.getMovie().observeForever(movieObserver)
+        verify(movieObserver).onChanged(dummyMovie)
 
     }
 
     @Test
     fun getMovieCrews(){
-        val movieResult = MutableLiveData<ItemEntitySameWithResponse?>()
+        val movieResult = MutableLiveData<Resource<MovieEntity>>()
         movieResult.value = dummyMovie
         `when`(movieCatalogueRepository.getDetailMovie(id)).thenReturn(movieResult)
-        val movie = viewModel.getMovieDetail(id).value
+        viewModel.setItem(id, MOVIE)
+        val movie = viewModel.getMovie().value?.data
         verify(movieCatalogueRepository).getDetailMovie(id)
         val crews = viewModel.getMovieCrews(movie)
         assertNotNull(crews)
@@ -76,10 +88,11 @@ class DetailViewModelTest{
 
     @Test
     fun getMovieCrewDetail(){
-        val movieResult = MutableLiveData<ItemEntitySameWithResponse?>()
+        val movieResult = MutableLiveData<Resource<MovieEntity>>()
         movieResult.value = dummyMovie
         `when`(movieCatalogueRepository.getDetailMovie(id)).thenReturn(movieResult)
-        val movie = viewModel.getMovieDetail(id).value
+        viewModel.setItem(id, MOVIE)
+        val movie = viewModel.getMovie().value?.data
         verify(movieCatalogueRepository).getDetailMovie(id)
         val crews = viewModel.getMovieCrews(movie)
         val crew = crews?.get(id)
@@ -91,30 +104,32 @@ class DetailViewModelTest{
 
     @Test
     fun getTvShow(){
-        val tvShowResult = MutableLiveData<ItemEntitySameWithResponse>()
+        val tvShowResult = MutableLiveData<Resource<TvShowEntity>>()
         tvShowResult.value = dummyTvShow
         `when`(movieCatalogueRepository.getDetailTvShow(id)).thenReturn(tvShowResult)
-        val tvShow = viewModel.getTvShowDetail(id).value
+        viewModel.setItem(id, TV_SHOW)
+        val tvShow = viewModel.getTvShow().value?.data
         verify(movieCatalogueRepository).getDetailTvShow(id)
         assertNotNull(tvShow)
-        assertEquals(dummyTvShow?.id, tvShow?.id)
-        assertEquals(dummyTvShow?.title, tvShow?.title)
-        assertEquals(dummyTvShow?.poster, tvShow?.poster)
-        assertEquals(dummyTvShow?.release, tvShow?.release)
-        assertEquals(dummyTvShow?.rating, tvShow?.rating)
-        assertEquals(dummyTvShow?.description, tvShow?.description)
-        assertEquals(dummyTvShow?.trailer, tvShow?.trailer)
+        assertEquals(dummyTvShow.data?.id, tvShow?.id)
+        assertEquals(dummyTvShow.data?.title, tvShow?.title)
+        assertEquals(dummyTvShow.data?.poster, tvShow?.poster)
+        assertEquals(dummyTvShow.data?.release, tvShow?.release)
+        assertEquals(dummyTvShow.data?.rating, tvShow?.rating)
+        assertEquals(dummyTvShow.data?.description, tvShow?.description)
+        assertEquals(dummyTvShow.data?.trailer, tvShow?.trailer)
 
-        viewModel.getTvShowDetail(id).observeForever(observer)
-        verify(observer).onChanged(dummyTvShow)
+        viewModel.getTvShow().observeForever(tvShowObserver)
+        verify(tvShowObserver).onChanged(dummyTvShow)
     }
 
     @Test
     fun getTvShowCrews(){
-        val tvShowResult = MutableLiveData<ItemEntitySameWithResponse>()
+        val tvShowResult = MutableLiveData<Resource<TvShowEntity>>()
         tvShowResult.value = dummyTvShow
         `when`(movieCatalogueRepository.getDetailTvShow(id)).thenReturn(tvShowResult)
-        val tvShow = viewModel.getTvShowDetail(id).value
+        viewModel.setItem(id, TV_SHOW)
+        val tvShow = viewModel.getTvShow().value?.data
         verify(movieCatalogueRepository).getDetailTvShow(id)
         val crews = viewModel.getTvShowCrews(tvShow)
         assertNotNull(crews)
@@ -123,10 +138,11 @@ class DetailViewModelTest{
 
     @Test
     fun getTvShowCrewDetail(){
-        val tvShowResult = MutableLiveData<ItemEntitySameWithResponse>()
+        val tvShowResult = MutableLiveData<Resource<TvShowEntity>>()
         tvShowResult.value = dummyTvShow
         `when`(movieCatalogueRepository.getDetailTvShow(id)).thenReturn(tvShowResult)
-        val tvShow = viewModel.getTvShowDetail(id).value
+        viewModel.setItem(id, TV_SHOW)
+        val tvShow = viewModel.getTvShow().value?.data
         verify(movieCatalogueRepository).getDetailTvShow(id)
         val crews = viewModel.getTvShowCrews(tvShow)
         val crew = crews?.get(id)

@@ -12,7 +12,7 @@
         tools:itemCount="3"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        tools:listitem="@layout/item_list" />
+        tools:listitem="@layout/item_grid_list" />
 
     <include
         android:id="@+id/mLoading"

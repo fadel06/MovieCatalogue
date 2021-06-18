@@ -8,25 +8,29 @@ import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.belajar.moviecatalogue.data.ItemEntitySameWithResponse
-import com.belajar.moviecatalogue.databinding.MovieAndTvShowFragmentBinding
-import com.belajar.moviecatalogue.ui.adapter.ItemAdapter
-import com.belajar.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_MOVIE
+import com.belajar.moviecatalogue.data.source.local.entity.MovieEntity
+import com.belajar.moviecatalogue.data.source.local.entity.TvShowEntity
+import com.belajar.moviecatalogue.databinding.FragmentMovieAndTvShowBinding
+import com.belajar.moviecatalogue.ui.adapter.MovieAdapter
+import com.belajar.moviecatalogue.ui.adapter.TvShowAdapter
+import com.belajar.moviecatalogue.ui.detail.DetailActivity.Companion.EXTRA_TYPE
+import com.belajar.moviecatalogue.ui.detail.DetailViewModel.Companion.MOVIE
+import com.belajar.moviecatalogue.ui.detail.DetailViewModel.Companion.TV_SHOW
+import com.belajar.moviecatalogue.utils.errorMessage
 import com.belajar.moviecatalogue.utils.visibility
 import com.belajar.moviecatalogue.viewmodel.ViewModelFactory
+import com.belajar.moviecatalogue.vo.Status
 
 class MovieAndTvShowFragment : Fragment() {
 
     private var type: String? = null
-    private var _binding: MovieAndTvShowFragmentBinding? = null
+    private var _binding: FragmentMovieAndTvShowBinding? = null
     private val binding get() = _binding
-    private var itemList: List<ItemEntitySameWithResponse>? = null
-    private val itemAdapter = ItemAdapter()
+    private var movieList: List<MovieEntity>? = null
+    private var tvShowList: List<TvShowEntity>? = null
+    private val movieAdapter = MovieAdapter()
+    private val tvShowAdapter = TvShowAdapter()
     private var viewModel: MovieAndTvShowViewModel? = null
-
-    companion object {
-        const val EXTRA_TYPE = "extra_type"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +43,7 @@ class MovieAndTvShowFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): FrameLayout? {
-        _binding = MovieAndTvShowFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentMovieAndTvShowBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
@@ -51,49 +55,81 @@ class MovieAndTvShowFragment : Fragment() {
                 this,
                 factory
             )[MovieAndTvShowViewModel::class.java]
-            val spanCount: Int
-            when {
-                type?.equals(EXTRA_MOVIE) == true -> {
-                    spanCount = 2
-                    loadMovies()
-                }
-                else -> {
-                    spanCount = 3
-                    loadTvShows()
+
+            if (type != null) {
+                viewModel?.setItems(type.toString())
+                when (type) {
+                    MOVIE -> {
+                        viewModel?.getMovies()?.observe(viewLifecycleOwner, { movies ->
+                            if (movies != null) {
+                                binding?.mLoading?.mProgressBar?.visibility(true)
+                                when (movies.status) {
+                                    Status.LOADING -> binding?.mLoading?.mProgressBar?.visibility(
+                                        true
+                                    )
+                                    Status.SUCCESS -> {
+                                        if (movies.data != null) {
+                                            binding?.mLoading?.mProgressBar?.visibility(false)
+                                            binding?.mRecyclerView?.apply {
+                                                adapter = movieAdapter
+                                                setHasFixedSize(true)
+                                                layoutManager = GridLayoutManager(context, 2)
+                                            }
+                                            populateDataList(movies.data)
+                                        }
+                                    }
+                                    Status.ERROR -> {
+                                        binding?.mLoading?.mProgressBar?.visibility(false)
+                                        context?.let { errorMessage(it) }
+                                    }
+                                }
+                            }
+                        })
+                    }
+                    TV_SHOW -> {
+                        viewModel?.getTvShows()?.observe(viewLifecycleOwner, { tvShows ->
+                            if (tvShows != null) {
+                                binding?.mLoading?.mProgressBar?.visibility(true)
+                                when (tvShows.status) {
+                                    Status.LOADING -> binding?.mLoading?.mProgressBar?.visibility(
+                                        true
+                                    )
+                                    Status.SUCCESS -> {
+                                        if (tvShows.data != null) {
+                                            binding?.mLoading?.mProgressBar?.visibility(false)
+                                            binding?.mRecyclerView?.apply {
+                                                adapter = tvShowAdapter
+                                                setHasFixedSize(true)
+                                                layoutManager = GridLayoutManager(context, 3)
+                                            }
+                                            populateDataList(tvShows.data)
+                                        }
+                                    }
+                                    Status.ERROR -> {
+                                        binding?.mLoading?.mProgressBar?.visibility(false)
+                                        context?.let { errorMessage(it) }
+                                    }
+                                }
+                            }
+                        })
+                    }
                 }
             }
-
-
-
-
-            binding?.mRecyclerView?.apply {
-                setHasFixedSize(true)
-                layoutManager = GridLayoutManager(context, spanCount)
-                adapter = itemAdapter
-            }
-
         }
     }
 
-    private fun loadTvShows() {
-        binding?.mLoading?.mProgressBar?.visibility(true)
-
-        viewModel?.getTvShows()?.observe(this, { tvShows ->
-            itemList = tvShows
-            itemAdapter.setItems(itemList, type)
-            binding?.mRecyclerView?.adapter = itemAdapter
-            binding?.mLoading?.mProgressBar?.visibility(false)
-        })
+    @JvmName("populateDataForMovieList")
+    private fun populateDataList(movies: List<MovieEntity>) {
+        movieList = movies
+        movieAdapter.setItems(movies, type)
+        movieAdapter.notifyDataSetChanged()
     }
 
-    private fun loadMovies() {
-        binding?.mLoading?.mProgressBar?.visibility(true)
-        viewModel?.getMovies()?.observe(this, { movies ->
-            itemList = movies
-            itemAdapter.setItems(itemList, type)
-            binding?.mRecyclerView?.adapter = itemAdapter
-            binding?.mLoading?.mProgressBar?.visibility(false)
-        })
+    @JvmName("populateDataForTvShowList")
+    private fun populateDataList(tvShows: List<TvShowEntity>) {
+        tvShowList = tvShows
+        tvShowAdapter.setItems(tvShows, type)
+        tvShowAdapter.notifyDataSetChanged()
     }
 
     override fun onDestroyView() {
