@@ -3,13 +3,12 @@ package com.belajar.moviecatalogue.data
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import androidx.paging.PagedList
-import com.belajar.moviecatalogue.utils.FakeDataRemote
 import com.belajar.moviecatalogue.data.source.local.LocalDataSource
 import com.belajar.moviecatalogue.data.source.local.entity.MovieEntity
 import com.belajar.moviecatalogue.data.source.local.entity.TvShowEntity
 import com.belajar.moviecatalogue.data.source.remote.RemoteDataSource
 import com.belajar.moviecatalogue.utils.AppExecutors
+import com.belajar.moviecatalogue.utils.FakeDataRemote
 import com.belajar.moviecatalogue.utils.LiveDataTestUtils
 import com.belajar.moviecatalogue.utils.PagedListUtil
 import com.belajar.moviecatalogue.vo.Resource
@@ -18,7 +17,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
 import org.mockito.Mockito.*
 
 class MovieCatalogueRepositoryTest {
@@ -26,9 +24,9 @@ class MovieCatalogueRepositoryTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private val remote = Mockito.mock(RemoteDataSource::class.java)
-    private val local = Mockito.mock(LocalDataSource::class.java)
-    private val appExecutors = Mockito.mock(AppExecutors::class.java)
+    private val remote = mock(RemoteDataSource::class.java)
+    private val local = mock(LocalDataSource::class.java)
+    private val appExecutors = mock(AppExecutors::class.java)
     private val movieCatalogueRepository = FakeMovieCatalogueRepository(remote, local, appExecutors)
 
     private val id = 1
@@ -37,9 +35,11 @@ class MovieCatalogueRepositoryTest {
     private val dummyTvShows = FakeDataRemote.generateRemoteDummyTvShows()
     private val dummyTvShow = MutableLiveData<TvShowEntity>()
 
+    private val dataSourceMovieFactory = mock(DataSource.Factory::class.java) as DataSource.Factory<Int, MovieEntity>
+    val dataSourceTvShowFactory = mock(DataSource.Factory::class.java) as DataSource.Factory<Int, TvShowEntity>
+
     @Test
     fun getAllMovies(){
-        val dataSourceMovieFactory = mock(DataSource.Factory::class.java) as DataSource.Factory<Int, MovieEntity>
         `when`(local.getAllMovies()).thenReturn(dataSourceMovieFactory)
         movieCatalogueRepository.getAllMovies()
 
@@ -51,7 +51,6 @@ class MovieCatalogueRepositoryTest {
 
     @Test
     fun getAllTvShows(){
-        val dataSourceTvShowFactory = mock(DataSource.Factory::class.java) as DataSource.Factory<Int, TvShowEntity>
         `when`(local.getAllTvShows()).thenReturn(dataSourceTvShowFactory)
         movieCatalogueRepository.getAllTvShows()
 
@@ -97,7 +96,7 @@ class MovieCatalogueRepositoryTest {
 
     @Test
     fun getFavoriteMovies(){
-        val dataSourceMovieFactory = mock(DataSource.Factory::class.java) as DataSource.Factory<Int, MovieEntity>
+
         `when`(local.getFavoriteMovie()).thenReturn(dataSourceMovieFactory)
         movieCatalogueRepository.getFavoriteMovies()
 
@@ -109,7 +108,6 @@ class MovieCatalogueRepositoryTest {
 
     @Test
     fun getFavoriteTvShows(){
-        val dataSourceTvShowFactory = mock(DataSource.Factory::class.java) as DataSource.Factory<Int, TvShowEntity>
         `when`(local.getFavoriteTvShow()).thenReturn(dataSourceTvShowFactory)
         movieCatalogueRepository.getFavoriteTvShows()
 

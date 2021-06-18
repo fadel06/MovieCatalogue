@@ -86,7 +86,7 @@ class HomeActivityTest {
         onView(withId(R.id.mScrollView)).perform(ViewActions.swipeUp())
         onView(withId(R.id.rvCrew)).check(matches(isDisplayed()))
         onView(withId(R.id.rvCrew)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>((dummyMovie[0].crewEntity.size ?: 0) - 1)
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie[0].crewEntity.size - 1)
         )
         pressBack()
     }
@@ -126,7 +126,7 @@ class HomeActivityTest {
         onView(withId(R.id.mScrollView)).perform(ViewActions.swipeUp())
         onView(withId(R.id.rvCrew)).check(matches(isDisplayed()))
         onView(withId(R.id.rvCrew)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>((dummyTvShow[0].crewEntity.size ?: 0) - 1)
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvShow[0].crewEntity.size - 1)
         )
         pressBack()
     }
@@ -166,7 +166,7 @@ class HomeActivityTest {
         onView(withId(R.id.mScrollView)).perform(ViewActions.swipeUp())
         onView(withId(R.id.rvCrew)).check(matches(isDisplayed()))
         onView(withId(R.id.rvCrew)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>((dummyMovie[0].crewEntity.size ?: 0) - 1)
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie[0].crewEntity.size - 1)
         )
         onView(withId(R.id.action_favorite)).perform(click())
         pressBack()
@@ -211,7 +211,7 @@ class HomeActivityTest {
         onView(withId(R.id.mScrollView)).perform(ViewActions.swipeUp())
         onView(withId(R.id.rvCrew)).check(matches(isDisplayed()))
         onView(withId(R.id.rvCrew)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>((dummyTvShow[0].crewEntity.size ?: 0) - 1)
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvShow[0].crewEntity.size - 1)
         )
         onView(withId(R.id.action_favorite)).perform(click())
         pressBack()
