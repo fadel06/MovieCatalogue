@@ -3,7 +3,8 @@ package com.belajar.moviecatalogue.ui.favorite
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.belajar.moviecatalogue.FakeDataRemote
+import androidx.paging.PagedList
+import com.belajar.moviecatalogue.utils.FakeDataRemote
 import com.belajar.moviecatalogue.data.source.MovieCatalogueRepository
 import com.belajar.moviecatalogue.data.source.local.entity.MovieEntity
 import com.belajar.moviecatalogue.data.source.local.entity.TvShowEntity
@@ -36,16 +37,16 @@ class MyFavoriteViewModelTest{
     private lateinit var movieCatalogueRepository: MovieCatalogueRepository
 
     @Mock
-    private lateinit var movieObserver: Observer<List<MovieEntity>>
+    private lateinit var movieObserver: Observer<PagedList<MovieEntity>>
 
     @Mock
-    private lateinit var tvShowObserver: Observer<List<TvShowEntity>>
+    private lateinit var tvShowObserver: Observer<PagedList<TvShowEntity>>
 
     @Mock
-    private lateinit var favoriteMovieList: List<MovieEntity>
+    private lateinit var pagedListMovie: PagedList<MovieEntity>
 
     @Mock
-    private lateinit var favoriteTvShowList: List<TvShowEntity>
+    private lateinit var pagedListTvShow: PagedList<TvShowEntity>
 
     @Before
     fun setUp(){
@@ -54,9 +55,9 @@ class MyFavoriteViewModelTest{
 
     @Test
     fun getFavoriteMovies(){
-        val dummyFavoriteMovie = favoriteMovieList
+        val dummyFavoriteMovie = pagedListMovie
         `when`(dummyFavoriteMovie.size).thenReturn(3)
-        val favoriteMovies = MutableLiveData<List<MovieEntity>>()
+        val favoriteMovies = MutableLiveData<PagedList<MovieEntity>>()
         favoriteMovies.value = dummyFavoriteMovie
 
         `when`(movieCatalogueRepository.getFavoriteMovies()).thenReturn(favoriteMovies)
@@ -72,24 +73,24 @@ class MyFavoriteViewModelTest{
 
     @Test
     fun setFavoriteMovie() {
-        viewModel.setFavMovie(FakeDataRemote.movieDetail(id))
+        viewModel.setFavoriteMovie(FakeDataRemote.movieDetail(id))
         verify(movieCatalogueRepository).setFavoriteMovie(FakeDataRemote.movieDetail(id), true)
         verifyNoMoreInteractions(movieCatalogueRepository)
     }
 
     @Test
     fun getFavoriteTvShows(){
-        val dummyFavoriteTvShow = favoriteTvShowList
+        val dummyFavoriteTvShow = pagedListTvShow
         `when`(dummyFavoriteTvShow.size).thenReturn(3)
-        val favoriteTvShows = MutableLiveData<List<TvShowEntity>>()
+        val favoriteTvShows = MutableLiveData<PagedList<TvShowEntity>>()
         favoriteTvShows.value = dummyFavoriteTvShow
 
         `when`(movieCatalogueRepository.getFavoriteTvShows()).thenReturn(favoriteTvShows)
         viewModel.setFavoriteItems(TV_SHOW)
-        val movie = viewModel.getFavoriteTvShows().value
+        val tvShow = viewModel.getFavoriteTvShows().value
         verify(movieCatalogueRepository).getFavoriteTvShows()
-        assertNotNull(movie)
-        assertEquals(3, movie?.size)
+        assertNotNull(tvShow)
+        assertEquals(3, tvShow?.size)
 
         viewModel.getFavoriteTvShows().observeForever(tvShowObserver)
         verify(tvShowObserver).onChanged(dummyFavoriteTvShow)
@@ -97,7 +98,7 @@ class MyFavoriteViewModelTest{
 
     @Test
     fun setFavoriteTvShow() {
-        viewModel.setFavTvShow(FakeDataRemote.tvShowDetail(id))
+        viewModel.setFavoriteTvShow(FakeDataRemote.tvShowDetail(id))
         verify(movieCatalogueRepository).setFavoriteTvShow(FakeDataRemote.tvShowDetail(id), true)
         verifyNoMoreInteractions(movieCatalogueRepository)
     }

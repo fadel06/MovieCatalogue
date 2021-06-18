@@ -1,4 +1,4 @@
-package com.belajar.moviecatalogue
+package com.belajar.moviecatalogue.utils
 
 import com.belajar.moviecatalogue.data.source.local.entity.*
 

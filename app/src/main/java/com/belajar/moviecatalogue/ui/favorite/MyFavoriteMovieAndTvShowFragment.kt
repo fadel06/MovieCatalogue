@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.belajar.moviecatalogue.databinding.FragmentMyFavoriteMovieAndTvShowBinding
 import com.belajar.moviecatalogue.ui.adapter.FavoriteMovieAdapter
@@ -33,8 +34,8 @@ class MyFavoriteMovieAndTvShowFragment : Fragment() {
     private var _binding: FragmentMyFavoriteMovieAndTvShowBinding? = null
     private val binding get() = _binding
     private lateinit var viewModel: MyFavoriteViewModel
-    private lateinit var movieAdapter: FavoriteMovieAdapter
-    private lateinit var tvShowAdapter: FavoriteTvShowAdapter
+    private val movieAdapter = FavoriteMovieAdapter()
+    private val tvShowAdapter = FavoriteTvShowAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,22 +57,35 @@ class MyFavoriteMovieAndTvShowFragment : Fragment() {
             viewModel = ViewModelProvider(this, factory)[MyFavoriteViewModel::class.java]
             if (type != null) {
                 viewModel.setFavoriteItems(type)
-                if (type == MOVIE) {
-                    viewModel.getFavoriteMovies().observe(viewLifecycleOwner, { favoriteMovies ->
-                        if (favoriteMovies != null) {
-                            movieAdapter = FavoriteMovieAdapter()
-                            movieAdapter.setItems(favoriteMovies, type)
-                            binding?.rvFavoriteItem?.adapter = movieAdapter
-                        }
-                    })
-                } else if (type == TV_SHOW) {
-                    viewModel.getFavoriteTvShows().observe(viewLifecycleOwner, { favoriteTvShows ->
-                        if (favoriteTvShows != null) {
-                            tvShowAdapter = FavoriteTvShowAdapter()
-                            tvShowAdapter.setItems(favoriteTvShows, type)
-                            binding?.rvFavoriteItem?.adapter = tvShowAdapter
-                        }
-                    })
+                when (type) {
+                    MOVIE -> {
+                        viewModel.getFavoriteMovies()
+                            .observe(viewLifecycleOwner, { favoriteMovies ->
+                                if (favoriteMovies != null) {
+                                    movieAdapter.getType(type)
+                                    movieAdapter.submitList(favoriteMovies)
+                                    binding?.rvFavoriteItem?.apply {
+                                        layoutManager = LinearLayoutManager(context)
+                                        setHasFixedSize(true)
+                                        adapter = movieAdapter
+                                    }
+                                }
+                            })
+                    }
+                    TV_SHOW -> {
+                        viewModel.getFavoriteTvShows()
+                            .observe(viewLifecycleOwner, { favoriteTvShows ->
+                                if (favoriteTvShows != null) {
+                                    tvShowAdapter.getType(type)
+                                    tvShowAdapter.submitList(favoriteTvShows)
+                                    binding?.rvFavoriteItem?.apply {
+                                        layoutManager = LinearLayoutManager(context)
+                                        setHasFixedSize(true)
+                                        adapter = tvShowAdapter
+                                    }
+                                }
+                            })
+                    }
                 }
             }
         }
@@ -98,16 +112,16 @@ class MyFavoriteMovieAndTvShowFragment : Fragment() {
                     Snackbar.make(requireView(), "Batalkan", Snackbar.LENGTH_LONG)
                 if (type == MOVIE) {
                     val movieEntity = movieAdapter.getSwipedData(swipedPosition)
-                    movieEntity.let { viewModel.setFavMovie(it) }
+                    movieEntity?.let { viewModel.setFavoriteMovie(it) }
                     snackBar.setAction("OK") {
-                        movieEntity.let { viewModel.setFavMovie(it) }
+                        movieEntity?.let { viewModel.setFavoriteMovie(it) }
                     }
                     snackBar.show()
                 } else if (type == TV_SHOW) {
                     val tvShowEntity = tvShowAdapter.getSwipedData(swipedPosition)
-                    tvShowEntity.let { viewModel.setFavTvShow(it) }
+                    tvShowEntity?.let { viewModel.setFavoriteTvShow(it) }
                     snackBar.setAction("OK") {
-                        tvShowEntity.let { viewModel.setFavTvShow(it) }
+                        tvShowEntity?.let { viewModel.setFavoriteTvShow(it) }
                     }
                     snackBar.show()
                 }

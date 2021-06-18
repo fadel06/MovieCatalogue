@@ -63,7 +63,7 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:$roomVersion"
 
     //paging
-    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
 
     //testing
     testImplementation "junit:junit:$junitVersion"

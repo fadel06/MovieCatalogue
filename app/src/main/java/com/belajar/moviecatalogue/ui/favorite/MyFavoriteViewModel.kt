@@ -2,6 +2,7 @@ package com.belajar.moviecatalogue.ui.favorite
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.PagedList
 import com.belajar.moviecatalogue.data.source.MovieCatalogueRepository
 import com.belajar.moviecatalogue.data.source.local.entity.MovieEntity
 import com.belajar.moviecatalogue.data.source.local.entity.TvShowEntity
@@ -10,8 +11,8 @@ import com.belajar.moviecatalogue.ui.detail.DetailViewModel.Companion.TV_SHOW
 
 class MyFavoriteViewModel(private val movieCatalogueRepository: MovieCatalogueRepository) :
     ViewModel() {
-    private lateinit var movieList: LiveData<List<MovieEntity>>
-    private lateinit var tvShowList: LiveData<List<TvShowEntity>>
+    private lateinit var movieList: LiveData<PagedList<MovieEntity>>
+    private lateinit var tvShowList: LiveData<PagedList<TvShowEntity>>
 
     fun setFavoriteItems(type: String?) {
         if (type != null) {
@@ -26,12 +27,12 @@ class MyFavoriteViewModel(private val movieCatalogueRepository: MovieCatalogueRe
 
     fun getFavoriteTvShows() = tvShowList
 
-    fun setFavMovie(movieEntity: MovieEntity) {
+    fun setFavoriteMovie(movieEntity: MovieEntity) {
         val newState = !movieEntity.isFavorite
         movieCatalogueRepository.setFavoriteMovie(movieEntity, newState)
     }
 
-    fun setFavTvShow(tvShowEntity: TvShowEntity) {
+    fun setFavoriteTvShow(tvShowEntity: TvShowEntity) {
         val newState = !tvShowEntity.isFavorite
         movieCatalogueRepository.setFavoriteTvShow(tvShowEntity, newState)
     }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import com.belajar.moviecatalogue.data.source.local.entity.MovieEntity
 import com.belajar.moviecatalogue.data.source.local.entity.TvShowEntity
@@ -26,8 +27,8 @@ class MovieAndTvShowFragment : Fragment() {
     private var type: String? = null
     private var _binding: FragmentMovieAndTvShowBinding? = null
     private val binding get() = _binding
-    private var movieList: List<MovieEntity>? = null
-    private var tvShowList: List<TvShowEntity>? = null
+    private var movieList: PagedList<MovieEntity>? = null
+    private var tvShowList: PagedList<TvShowEntity>? = null
     private val movieAdapter = MovieAdapter()
     private val tvShowAdapter = TvShowAdapter()
     private var viewModel: MovieAndTvShowViewModel? = null
@@ -119,16 +120,18 @@ class MovieAndTvShowFragment : Fragment() {
     }
 
     @JvmName("populateDataForMovieList")
-    private fun populateDataList(movies: List<MovieEntity>) {
+    private fun populateDataList(movies: PagedList<MovieEntity>) {
         movieList = movies
-        movieAdapter.setItems(movies, type)
+        movieAdapter.getType(type)
+        movieAdapter.submitList(movieList)
         movieAdapter.notifyDataSetChanged()
     }
 
     @JvmName("populateDataForTvShowList")
-    private fun populateDataList(tvShows: List<TvShowEntity>) {
+    private fun populateDataList(tvShows: PagedList<TvShowEntity>) {
         tvShowList = tvShows
-        tvShowAdapter.setItems(tvShows, type)
+        tvShowAdapter.getType(type)
+        tvShowAdapter.submitList(tvShowList)
         tvShowAdapter.notifyDataSetChanged()
     }
 

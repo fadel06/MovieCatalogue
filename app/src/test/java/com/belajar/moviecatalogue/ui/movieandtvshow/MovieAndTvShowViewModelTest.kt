@@ -3,6 +3,7 @@ package com.belajar.moviecatalogue.ui.movieandtvshow
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.belajar.moviecatalogue.data.source.local.entity.MovieEntity
 import com.belajar.moviecatalogue.data.source.MovieCatalogueRepository
 import com.belajar.moviecatalogue.data.source.local.entity.TvShowEntity
@@ -16,6 +17,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -34,10 +37,16 @@ class MovieAndTvShowViewModelTest{
     private lateinit var movieCatalogueRepository: MovieCatalogueRepository
 
     @Mock
-    private lateinit var movieObserver: Observer<Resource<List<MovieEntity>>>
+    private lateinit var movieObserver: Observer<Resource<PagedList<MovieEntity>>>
 
     @Mock
-    private lateinit var tvShowObserver: Observer<Resource<List<TvShowEntity>>>
+    private lateinit var tvShowObserver: Observer<Resource<PagedList<TvShowEntity>>>
+
+    @Mock
+    private lateinit var pagedListMovie: PagedList<MovieEntity>
+
+    @Mock
+    private lateinit var pagedListTvShow: PagedList<TvShowEntity>
 
     @Before
     fun setUp(){
@@ -46,35 +55,37 @@ class MovieAndTvShowViewModelTest{
 
     @Test
     fun getMovies(){
-        val dummyMovies = Resource.success(Data.generateMovies())
-        val listMovies = MutableLiveData<Resource<List<MovieEntity>>>()
+        val dummyMovies = Resource.success(pagedListMovie)
+        `when`(dummyMovies.data?.size).thenReturn(16)
+        val listMovies = MutableLiveData<Resource<PagedList<MovieEntity>>>()
         listMovies.value = dummyMovies
 
-        Mockito.`when`(movieCatalogueRepository.getAllMovies()).thenReturn(listMovies)
+        `when`(movieCatalogueRepository.getAllMovies()).thenReturn(listMovies)
         viewModel.setItems(MOVIE)
         val movies = viewModel.getMovies().value?.data
-        Mockito.verify(movieCatalogueRepository).getAllMovies()
+        verify(movieCatalogueRepository).getAllMovies()
         assertNotNull(movies)
         assertEquals(16, movies?.size)
 
         viewModel.getMovies().observeForever(movieObserver)
-        Mockito.verify(movieObserver).onChanged(dummyMovies)
+        verify(movieObserver).onChanged(dummyMovies)
     }
 
     @Test
     fun getTvShows(){
-        val dummyTvShows = Resource.success(Data.generateTvShows())
-        val listTvShows = MutableLiveData<Resource<List<TvShowEntity>>>()
+        val dummyTvShows = Resource.success(pagedListTvShow)
+        `when`(dummyTvShows.data?.size).thenReturn(15)
+        val listTvShows = MutableLiveData<Resource<PagedList<TvShowEntity>>>()
         listTvShows.value = dummyTvShows
 
-        Mockito.`when`(movieCatalogueRepository.getAllTvShows()).thenReturn(listTvShows)
+        `when`(movieCatalogueRepository.getAllTvShows()).thenReturn(listTvShows)
         viewModel.setItems(TV_SHOW)
         val tvShows = viewModel.getTvShows().value?.data
-        Mockito.verify(movieCatalogueRepository).getAllTvShows()
+        verify(movieCatalogueRepository).getAllTvShows()
         assertNotNull(tvShows)
         assertEquals(15, tvShows?.size)
 
         viewModel.getTvShows().observeForever(tvShowObserver)
-        Mockito.verify(tvShowObserver).onChanged(dummyTvShows)
+        verify(tvShowObserver).onChanged(dummyTvShows)
     }
 }
